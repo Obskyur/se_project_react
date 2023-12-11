@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import "./WeatherCard.css";
+import image from "../../images/conditions/day-clear.svg";
 
 class WeatherCard extends Component {
   constructor(props) {
@@ -6,9 +8,10 @@ class WeatherCard extends Component {
   }
   render() {
     return (
-      <>
-        <p>WeatherCard Placeholder</p>
-      </>
+      <section className="weather">
+        <div className="weather__temp">75F</div>
+        <img src={image} className="weather__img" alt="Weather Conditions"/>
+      </section>
     );
   }
 }
