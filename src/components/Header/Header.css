@@ -1,9 +1,8 @@
 header {
-  background-color: lightcoral;
   display: flex;
   height: 40px;
-  padding: 0px 40px 0px;
-  margin-top: 32px;
+  padding: 0;
+  margin: 32px 40px 0;
   align-items: center;
   font-size: 20px;
   line-height: 1.2;

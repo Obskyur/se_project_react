@@ -3,13 +3,11 @@ import ItemCard from "../ItemCard/ItemCard";
 import WeatherCard from "../WeatherCard/WeatherCard";
 
 class Main extends Component {
-  constructor(props) {
-    super(props);
-  }
+  
   render() {
     return (
       <main>
-        <WeatherCard />
+        <WeatherCard day={true} type="clear" />
         <ItemCard />
       </main>
     );
