@@ -1,0 +1,18 @@
+footer {
+  background-color: lightseagreen;
+  display: flex;
+  height: 20px;
+  margin: auto 40px 24px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.footer__developer {
+  margin-right: auto;
+}
+
+.footer__year {
+  margin: 0;
+}

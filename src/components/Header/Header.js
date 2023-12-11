@@ -1,6 +1,6 @@
 import "./Header.css";
 import { Component } from "react";
-import Logo from "../../images/Logo.svg";
+import Logo from "../../images/logo.svg";
 import UserPic from "../../images/userpic.png";
 
 class Header extends Component {
@@ -18,7 +18,9 @@ class Header extends Component {
     return (
       <header>
         <img src={Logo} className="header__logo" alt="WTWR Logo" />
-        <div className="header__details">{this.currentDate}, {this.location}</div>
+        <div className="header__details">
+          {this.currentDate}, {this.location}
+        </div>
         <button className="header__add-clothes-button">+ Add Clothes</button>
         <div className="header__user-name">Terrence Tegegne</div>
         <img src={UserPic} className="header__user-pic" alt="User" />

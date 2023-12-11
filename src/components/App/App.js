@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import "./App.css";
 import Header from "../Header/Header.js";
 import Main from "../Main/Main.js";
@@ -11,13 +11,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="page">
         <Header />
         <Main />
-        {/* <Footer /> */}
+        <Footer />
       </div>
     );
   }
-};
+}
 
 export default App;
