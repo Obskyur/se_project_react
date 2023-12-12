@@ -43,11 +43,11 @@ class ItemCard extends Component {
   constructor(props) {
     super(props);
 
-    this.handleCardClick = props.handleCardClick;
+    this.onPreviewModal = props.onPreviewModal;
   }
   render() {
     return (
-      <div className="card">
+      <div className="card" onClick={this.onPreviewModal}>
         <h2 className="card__title">Placeholder Title</h2>
         <img src={defaultClothingItems[0].link} className="card__image" alt="Placeholder" onClick={this.handleCardClick}/>
       </div>

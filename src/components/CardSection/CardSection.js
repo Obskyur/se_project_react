@@ -9,12 +9,12 @@ function CardSection(props) {
         Today is 75°F / You may want to wear:
       </h2>
       <section className="card-section">
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
+        <ItemCard onPreviewModal={props.onPreviewModal} />
+        <ItemCard onPreviewModal={props.onPreviewModal} />
+        <ItemCard onPreviewModal={props.onPreviewModal} />
+        <ItemCard onPreviewModal={props.onPreviewModal} />
+        <ItemCard onPreviewModal={props.onPreviewModal} />
+        <ItemCard onPreviewModal={props.onPreviewModal} />
       </section>
     </div>
   );
