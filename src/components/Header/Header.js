@@ -12,6 +12,7 @@ class Header extends Component {
       day: "numeric",
     });
     this.location = "Placeholder";
+    this.onCreateModal = props.onCreateModal;
   }
 
   render() {
@@ -21,7 +22,7 @@ class Header extends Component {
         <div className="header__details">
           {this.currentDate}, {this.location}
         </div>
-        <button className="header__add-clothes-button">+ Add Clothes</button>
+        <button className="header__add-clothes-button" onClick={this.onCreateModal}>+ Add Clothes</button>
         <div className="header__user-name">Terrence Tegegne</div>
         <img src={UserPic} className="header__user-pic" alt="User" />
       </header>

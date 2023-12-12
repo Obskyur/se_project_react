@@ -2,15 +2,42 @@ import React from "react";
 import "./App.css";
 import Header from "../Header/Header.js";
 import Main from "../Main/Main.js";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import AddGarmentForm from "../AddGarmentForm/AddGarmentForm";
 import Footer from "../Footer/Footer.js";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeModal: "",
+    };
+  }
+
+  handleCreateModal = () => {
+    this.setState({ activeModal: "create" });
+  };
+
+  handleCloseModal = () => {
+    this.setState({ activeModal: "" });
+  }
 
   render() {
     return (
       <div className="page">
-        <Header />
+        <Header onCreateModal={this.handleCreateModal} />
         <Main />
+        {this.state.activeModal === "create" && (
+          <ModalWithForm
+            title="New Garment"
+            name="new-garment"
+            buttonText="Add garment"
+            onClose={this.handleCloseModal}
+          >
+            <AddGarmentForm />
+          </ModalWithForm>
+        )}
         <Footer />
       </div>
     );
