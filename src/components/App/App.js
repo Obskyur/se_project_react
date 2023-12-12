@@ -15,13 +15,19 @@ class App extends React.Component {
     };
   }
 
+  handleCloseModal = () => {
+    window.removeEventListener("keydown", this.handleEsc);
+    this.setState({ activeModal: "" });
+  };
+
   handleCreateModal = () => {
+    window.addEventListener("keydown", this.handleEsc);
     this.setState({ activeModal: "create" });
   };
 
-  handleCloseModal = () => {
-    this.setState({ activeModal: "" });
-  }
+  handleEsc = (e) => {
+    if (e.key === "Escape") this.handleCloseModal();
+  };
 
   render() {
     return (

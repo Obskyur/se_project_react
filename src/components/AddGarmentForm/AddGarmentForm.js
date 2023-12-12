@@ -5,11 +5,11 @@ function AddGarmentForm() {
     <>
       <label>
         Name
-        <input type="text" name="name" minLength="1" maxLength="30" />
+        <input type="text" name="name" minLength="1" maxLength="30" placeholder="Name" />
       </label>
       <label>
         Image
-        <input type="url" name="link" minLength="10" />
+        <input type="url" name="link" minLength="10" placeholder="Image URL"/>
       </label>
       <div>
         <p>Select the Weather Type</p>

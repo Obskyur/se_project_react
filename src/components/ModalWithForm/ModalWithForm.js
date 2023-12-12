@@ -4,8 +4,8 @@ import "./ModalWithForm.css";
 function ModalWithForm(props) {
   
   return (
-    <div className={`modal modal_type_${props.name}`}>
-      <div className="modal__content">
+    <div className={`modal modal_type_${props.name}`} onClick={props.onClose}>
+      <div className="modal__content" onClick={e => e.stopPropagation()}>
         <button
           type="button"
           className="close-button"
