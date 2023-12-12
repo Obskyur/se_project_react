@@ -1,0 +1,19 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 325px;
+  height: 328px;
+}
+
+.card__title {
+  position: absolute;
+  margin: 15px auto 0;
+  align-self: center;
+}
+
+.card__image {
+  width: 100%;
+  height: 100%;
+  border: 1px rgba(0, 0, 0, 0.3) solid;
+  border-radius: 20px;
+}

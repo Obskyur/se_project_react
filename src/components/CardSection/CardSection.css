@@ -1,0 +1,7 @@
+.card-section {
+  margin: 40px 32px 0;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(auto-fill, 325px);
+  grid-gap: 20px;
+}
