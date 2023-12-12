@@ -4,6 +4,7 @@ header {
   padding: 0;
   margin: 32px 32px 0;
   align-items: center;
+  font-weight: 700;
   font-size: 20px;
   line-height: 1.2;
 }
@@ -17,7 +18,6 @@ header {
 .header__details {
   padding: 0;
   margin-right: auto;
-  font-family: "Cabinet Grotesk";
 }
 
 .header__add-clothes-button {
@@ -25,6 +25,8 @@ header {
   padding: 0;
   border: none;
   background-color: transparent;
+  font-family: 'Cabinet Grotesk';
+  font-weight: 700;
   font-size: 20px;
   line-height: 1.2;
 }

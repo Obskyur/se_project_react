@@ -3,6 +3,7 @@
   max-width: 1600px;
   margin: 0 auto;
   display: flex;
+  font-family: 'Cabinet Grotesk';
   flex-direction: column;
   font-size: 16px;
 }

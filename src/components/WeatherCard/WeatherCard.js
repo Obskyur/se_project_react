@@ -28,7 +28,7 @@ class WeatherCard extends Component {
   render() {
     return (
       <section className="weather">
-        <div className="weather__temp">75F</div>
+        <div className="weather__temp">75°F</div>
         <img
           src={this.imgSource.url}
           className="weather__img"
