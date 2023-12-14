@@ -11,18 +11,30 @@ class Header extends Component {
       month: "long",
       day: "numeric",
     });
-    this.location = "Placeholder";
+    this.weather = props.weather;
+    this.location = this.weather.city;
     this.onCreateModal = props.onCreateModal;
+    this.state = props.weather;
   }
 
+  // componentDidUpdate() {
+  //   this.render();
+  // }
+
   render() {
+    console.log(this.state.weather);
     return (
       <header>
         <img src={Logo} className="header__logo" alt="WTWR Logo" />
         <div className="header__details">
           {this.currentDate}, {this.location}
         </div>
-        <button className="header__add-clothes-button" onClick={this.onCreateModal}>+ Add Clothes</button>
+        <button
+          className="header__add-clothes-button"
+          onClick={this.onCreateModal}
+        >
+          + Add Clothes
+        </button>
         <div className="header__user-name">Terrence Tegegne</div>
         <img src={UserPic} className="header__user-pic" alt="User" />
       </header>

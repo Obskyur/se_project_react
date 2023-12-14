@@ -6,14 +6,40 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal.js";
 import AddGarmentForm from "../AddGarmentForm/AddGarmentForm";
 import Footer from "../Footer/Footer.js";
-
+import getWeather from "../../utils/weatherApi.js";
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       activeModal: "preview",
+      weather: {
+        city: "",
+        temp: "",
+        weather: "",
+        day: true,
+      },
     };
+  }
+
+  componentDidMount() {
+    getWeather()
+      .then((data) => {
+        this.setState({
+          weather: {
+            city: data.name,
+            temp: data.main.temp,
+            weather: data.weather[0].description,
+            day: data.dt < data.sys.sunrise ? false : true,
+          },
+        });
+        // console.log(this.state.weather);
+      })
+      .catch(console.error);
+  }
+
+  componentDidUpdate() {
+    this.render();
   }
 
   handleCloseModal = () => {
@@ -29,7 +55,7 @@ class App extends React.Component {
   handlePreviewModal = () => {
     window.addEventListener("keydown", this.handleEsc);
     this.setState({ activeModal: "preview" });
-  }
+  };
 
   handleEsc = (e) => {
     if (e.key === "Escape") this.handleCloseModal();
@@ -38,8 +64,14 @@ class App extends React.Component {
   render() {
     return (
       <div className="page">
-        <Header onCreateModal={this.handleCreateModal} />
-        <Main onPreviewModal={this.handlePreviewModal} />
+        <Header
+          onCreateModal={this.handleCreateModal}
+          weather={this.state.weather}
+        />
+        <Main
+          onPreviewModal={this.handlePreviewModal}
+          weather={this.state.weather}
+        />
         {this.state.activeModal === "create" && (
           <ModalWithForm
             title="New Garment"
@@ -51,10 +83,15 @@ class App extends React.Component {
           </ModalWithForm>
         )}
         {this.state.activeModal === "preview" && (
-          <ItemModal card={{ _id: 1,
-            name: "Hoodie",
-            weather: "warm",
-            link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8" }} onClose={this.handleCloseModal}/>
+          <ItemModal
+            card={{
+              _id: 1,
+              name: "Hoodie",
+              weather: "warm",
+              link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8",
+            }}
+            onClose={this.handleCloseModal}
+          />
         )}
         <Footer />
       </div>

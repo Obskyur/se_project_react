@@ -6,7 +6,12 @@ class Main extends Component {
   constructor(props) {
     super(props);
 
+    this.weather = props.weather;
     this.onPreviewModal = props.onPreviewModal;
+  }
+
+  componentDidUpdate() {
+    this.render();
   }
 
   render() {
