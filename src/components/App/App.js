@@ -29,12 +29,19 @@ class App extends React.Component {
           weather: {
             city: data.name,
             temp: Math.ceil(data.main.temp),
-            weather: data.weather[0].main,
             day: data.dt < data.sys.sunrise ? false : true,
+            weather: this.getWeatherCondition(data.weather[0].main),
           },
         });
       })
       .catch(console.error);
+  }
+
+  getWeatherCondition(apiWeatherMain) {
+    if (apiWeatherMain == "Drizzle") return "Rain";
+    else if (apiWeatherMain == "Mist" || apiWeatherMain == "Smoke")
+      return "Fog";
+    else return apiWeatherMain;
   }
 
   handleCloseModal = () => {
