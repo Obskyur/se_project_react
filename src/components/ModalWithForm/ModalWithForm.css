@@ -16,7 +16,7 @@ input[type="radio"] {
   margin: 2px 8px 2px 0;
 }
 
-.modal {
+.form-modal {
   position: fixed;
   top: 0;
   right: 0;
@@ -28,7 +28,7 @@ input[type="radio"] {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.modal__content {
+.form-modal__content {
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@ input[type="radio"] {
   padding: 28px;
 }
 
-.modal__close-button {
+.form-modal__close-button {
   position: absolute;
   top: 22px;
   right: 30px;
@@ -51,17 +51,17 @@ input[type="radio"] {
   cursor: pointer;
 }
 
-.modal__title {
+.form-modal__title {
   margin: 0 0 24px;
   font-size: 16px;
 }
 
-.modal__form {
+.form-modal__form {
   display: flex;
   flex-direction: column;
 }
 
-.modal__submit-button {
+.form-modal__submit-button {
   margin-top: 28px;
   padding: 8px 16px;
   width: max-content;

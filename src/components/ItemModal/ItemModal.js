@@ -2,17 +2,18 @@ import React from "react";
 import "./ItemModal.css";
 
 function ItemModal(props) {
+  console.log(props.card);
   return (
-    <div className="modal" onClick={props.onClose}>
-      <div className="modal__content" onClick={e => e.stopPropagation()}>
+    <div className="preview-modal" onClick={props.onClose}>
+      <div className="preview-modal__content" onClick={e => e.stopPropagation()}>
         <button
           type="button"
-          className="modal__close-button"
+          className="preview-modal__close-button"
           onClick={props.onClose}
         />
-        <img className="modal__image" src={props.card.link} />
-        <h2 className="modal__title">{props.card.name}</h2>
-        <p className="modal__description">Weather: {props.card.weather}</p>
+        <img className="preview-modal__image" src={props.card.link} alt={props.card.name} />
+        <h2 className="preview-modal__title">{props.card.name}</h2>
+        <p className="preview-modal__description">Weather: {props.card.weather}</p>
       </div>
     </div>
   );

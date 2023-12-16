@@ -1,24 +1,14 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import CardSection from "../CardSection/CardSection";
 
 class Main extends Component {
-  constructor(props) {
-    super(props);
-
-    this.weather = props.weather;
-    this.onPreviewModal = props.onPreviewModal;
-  }
-
-  componentDidUpdate() {
-    this.render();
-  }
 
   render() {
     return (
       <main>
-        <WeatherCard day={true} type="clear" />
-        <CardSection onPreviewModal={this.onPreviewModal} />
+        <WeatherCard weather={this.props.weather} />
+        <CardSection onPreviewModal={this.props.onPreviewModal} weather={this.props.weather} />
       </main>
     );
   }

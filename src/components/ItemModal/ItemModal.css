@@ -1,4 +1,4 @@
-.modal {
+.preview-modal {
   position: fixed;
   top: 0;
   right: 0;
@@ -12,7 +12,7 @@
   font-weight: 700;
 }
 
-.modal__content {
+.preview-modal__content {
   padding: 0;
   position: fixed;
   display: flex;
@@ -24,7 +24,7 @@
   border-radius: 20px;
 }
 
-.modal__close-button {
+.preview-modal__close-button {
   position: absolute;
   top: 22px;
   right: 30px;
@@ -36,16 +36,16 @@
   cursor: pointer;
 }
 
-.modal__image {
+.preview-modal__image {
   border-radius: 20px 20px 0 0;
 }
 
-.modal__title {
+.preview-modal__title {
   margin: 20px 0 0 32px;
   font-size: 20px;
 }
 
-.modal__description {
+.preview-modal__description {
   margin: 12px 0 32px 32px;
   font-size: 20px;
 }

@@ -12,7 +12,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      activeModal: "preview",
+      activeModal: "",
       weather: {
         city: "",
         temp: "",
@@ -28,18 +28,13 @@ class App extends React.Component {
         this.setState({
           weather: {
             city: data.name,
-            temp: data.main.temp,
-            weather: data.weather[0].description,
+            temp: Math.ceil(data.main.temp),
+            weather: data.weather[0].main,
             day: data.dt < data.sys.sunrise ? false : true,
           },
         });
-        // console.log(this.state.weather);
       })
       .catch(console.error);
-  }
-
-  componentDidUpdate() {
-    this.render();
   }
 
   handleCloseModal = () => {
