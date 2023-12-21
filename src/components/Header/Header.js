@@ -3,13 +3,11 @@ import { useState } from "react";
 import Logo from "../../images/logo.svg";
 import UserPic from "../../images/userpic.png";
 
-function Header({weather, onCreateModal}) {
-  const [currentDate] = useState(
-    new Date().toLocaleString("default", {
-      month: "long",
-      day: "numeric",
-    })
-  );
+function Header({ weather, onCreateModal }) {
+  const currentDate = new Date().toLocaleString("default", {
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <header>
@@ -17,10 +15,7 @@ function Header({weather, onCreateModal}) {
       <div className="header__details">
         {currentDate}, {weather.city}
       </div>
-      <button
-        className="header__add-clothes-button"
-        onClick={onCreateModal}
-      >
+      <button className="header__add-clothes-button" onClick={onCreateModal}>
         + Add Clothes
       </button>
       <div className="header__user-name">Terrence Tegegne</div>
