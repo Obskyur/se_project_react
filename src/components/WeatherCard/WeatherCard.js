@@ -1,9 +1,9 @@
 import "./WeatherCard.css";
 import { weatherOptions } from "../../utils/constants.js";
 
-function WeatherCard({weather}) {
-  const weatherOption = weatherOptions.find((i) => {
-    return i.day === weather.day && i.type === weather.weather;
+function WeatherCard({ weather }) {
+  const weatherOption = weatherOptions.find((item) => {
+    return item.day === weather.day && item.type === weather.weather;
   });
 
   if (weatherOption)
@@ -17,6 +17,7 @@ function WeatherCard({weather}) {
         />
       </section>
     );
+  else return null;
 }
 
 export default WeatherCard;
