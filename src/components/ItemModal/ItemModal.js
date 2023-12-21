@@ -1,7 +1,17 @@
-import React from "react";
+import { useEffect } from "react";
 import "./ItemModal.css";
 
-function ItemModal({card, onClose}) {
+function ItemModal({ card, onClose }) {
+  
+  // Attach / remove handler to close modal on `Esc` press:
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  });
+
   return (
     <div className="preview-modal" onClick={onClose}>
       <div className="preview-modal__content" onClick={e => e.stopPropagation()}>

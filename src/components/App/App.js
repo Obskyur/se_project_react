@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "../Header/Header.js";
 import Main from "../Main/Main.js";
@@ -37,24 +37,17 @@ function App() {
   }
 
   const handleCloseModal = () => {
-    window.removeEventListener("keydown", handleEsc);
     setActiveModal("");
   };
 
   const handleCreateModal = () => {
-    window.addEventListener("keydown", handleEsc);
     setActiveModal("create");
   };
 
   const handlePreviewModal = (card) => {
-    window.addEventListener("keydown", handleEsc);
     setSelectedCard(card);
     setActiveModal("preview");
   };
-
-  const handleEsc = useCallback((e) => {
-    if (e.key === "Escape") handleCloseModal();
-  }, []);
 
   return (
     <div className="page">

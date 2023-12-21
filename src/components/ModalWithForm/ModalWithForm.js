@@ -1,7 +1,17 @@
-import React from "react";
+import { useEffect } from "react";
 import "./ModalWithForm.css";
 
 function ModalWithForm({ title, name, buttonText, onClose, children }) {
+
+  // Attach / remove handler to close modal on `Esc` press:
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  });
+
   return (
     <div
       className={`form-modal modal_type_${name}`}
