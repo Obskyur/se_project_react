@@ -1,3 +1,7 @@
+/*═════╕
+ │ API │
+ ╘═════*/
+
 import { apiKey } from "./constants.js";
 
 export default function getWeather() {
@@ -5,13 +9,15 @@ export default function getWeather() {
     .then(coords => {
       const apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&units=imperial&appid=${apiKey}`;
 
-      return fetch(apiURL, { method: "GET" }).then((res) => {
-        return res.ok
-          ? res.json()
-          : Promise.reject(`Error: ${res.status}`);
-      });
+      return fetch(apiURL, { method: "GET" })
+        .then(processServerResponse);
     })
-    .catch(console.error);
+}
+
+const processServerResponse = (res) => {
+  return res.ok
+  ? res.json()
+  : Promise.reject(`Error: ${res.status}`);
 }
 
 /*══════════╕
