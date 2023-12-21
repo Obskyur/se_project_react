@@ -7,10 +7,8 @@ function CardSection({weather, onPreviewModal}) {
     return weather.temp > 84
       ? "hot"
       : weather.temp > 56
-      ? "moderate"
-      : weather.temp > 32
-      ? "cold"
-      : "very cold";
+        ? "moderate"
+        : "cold"
   };
   const weatherType = getWeatherType();
 
