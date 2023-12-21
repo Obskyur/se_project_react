@@ -2,13 +2,13 @@ import "./CardSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 import { defaultClothingItems } from "../../utils/constants";
 
-function CardSection(props) {
+function CardSection({weather, onPreviewModal}) {
   const getWeatherType = () => {
-    return props.weather.temp > 84
+    return weather.temp > 84
       ? "hot"
-      : props.weather.temp > 56
+      : weather.temp > 56
       ? "moderate"
-      : props.weather.temp > 32
+      : weather.temp > 32
       ? "cold"
       : "very cold";
   };
@@ -21,12 +21,12 @@ function CardSection(props) {
   return (
     <div className="card-section__container">
       <h2 className="card-section__title">
-        Today is {props.weather.temp}°F / You may want to wear:
+        Today is {weather.temp}°F / You may want to wear:
       </h2>
       <section className="card-section">
         {filteredCards.map((card) => (
           <ItemCard
-            onPreviewModal={props.onPreviewModal}
+            onPreviewModal={onPreviewModal}
             card={card}
             key={card._id}
           />

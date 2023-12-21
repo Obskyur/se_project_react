@@ -1,13 +1,13 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
 import CardSection from "../CardSection/CardSection";
 
-function Main(props) {
+function Main({weather, onPreviewModal}) {
   return (
     <main>
-      <WeatherCard weather={props.weather} />
+      <WeatherCard weather={weather} />
       <CardSection
-        onPreviewModal={props.onPreviewModal}
-        weather={props.weather}
+        onPreviewModal={onPreviewModal}
+        weather={weather}
       />
     </main>
   );

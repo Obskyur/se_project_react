@@ -1,14 +1,15 @@
 import "./WeatherCard.css";
 import { weatherOptions } from "../../utils/constants.js";
-function WeatherCard(props) {
+
+function WeatherCard({weather}) {
   const weatherOption = weatherOptions.find((i) => {
-    return i.day === props.weather.day && i.type === props.weather.weather;
+    return i.day === weather.day && i.type === weather.weather;
   });
 
   if (weatherOption)
     return (
       <section className="weather">
-        <div className="weather__temp">{props.weather.temp}°F</div>
+        <div className="weather__temp">{weather.temp}°F</div>
         <img
           src={weatherOption.url}
           className="weather__img"
