@@ -17,15 +17,15 @@ function AddGarmentForm() {
       <div>
         <label>Select the Weather Type</label>
         <div className="modal__radio-option">
-          <input type="radio" id="hot" value="hot" />
+          <input type="radio" name="temp" id="hot" value="hot" />
           <label>Hot</label>
         </div>
         <div className="modal__radio-option">
-          <input type="radio" id="warm" value="warm" />
+          <input type="radio" name="temp" id="warm" value="warm" />
           <label>Warm</label>
         </div>
         <div className="modal__radio-option">
-          <input type="radio" id="cold" value="cold" />
+          <input type="radio" name="temp" id="cold" value="cold" />
           <label>Cold</label>
         </div>
       </div>
