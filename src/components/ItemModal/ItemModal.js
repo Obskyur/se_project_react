@@ -2,7 +2,6 @@ import React from "react";
 import "./ItemModal.css";
 
 function ItemModal(props) {
-  console.log(props.card);
   return (
     <div className="preview-modal" onClick={props.onClose}>
       <div className="preview-modal__content" onClick={e => e.stopPropagation()}>
