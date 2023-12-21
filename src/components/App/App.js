@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import Header from "../Header/Header.js";
 import Main from "../Main/Main.js";
@@ -9,8 +9,8 @@ import Footer from "../Footer/Footer.js";
 import getWeather from "../../utils/weatherApi.js";
 
 function App() {
-  const [activeModal, setActiveModal] = useState("");
   const [weather, setWeather] = useState({});
+  const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
 
   useEffect(() => {
@@ -27,7 +27,7 @@ function App() {
         });
       })
       .catch(console.error);
-  });
+  }, []);
 
   function getWeatherCondition(apiWeatherMain) {
     if (apiWeatherMain === "Drizzle") return "Rain";
@@ -52,9 +52,9 @@ function App() {
     setActiveModal("preview");
   };
 
-  const handleEsc = (e) => {
+  const handleEsc = useCallback((e) => {
     if (e.key === "Escape") handleCloseModal();
-  };
+  }, []);
 
   return (
     <div className="page">
