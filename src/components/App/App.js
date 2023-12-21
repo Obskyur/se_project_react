@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "../Header/Header.js";
 import Main from "../Main/Main.js";
@@ -7,98 +7,83 @@ import ItemModal from "../ItemModal/ItemModal.js";
 import AddGarmentForm from "../AddGarmentForm/AddGarmentForm";
 import Footer from "../Footer/Footer.js";
 import getWeather from "../../utils/weatherApi.js";
-class App extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      activeModal: "",
-      weather: {
-        city: "",
-        temp: "",
-        weather: "",
-        day: true,
-      },
-    };
-  }
+function App() {
+  const [activeModal, setActiveModal] = useState("");
+  const [weather, setWeather] = useState({});
+  const [selectedCard, setSelectedCard] = useState({});
 
-  componentDidMount() {
+  useEffect(() => {
     getWeather()
       .then((data) => {
-        this.setState({
-          weather: {
-            city: data.name,
-            temp: Math.ceil(data.main.temp),
-            day: (data.dt < data.sys.sunrise || data.dt > data.sys.sunset) ? false : true,
-            weather: this.getWeatherCondition(data.weather[0].main),
-          },
+        setWeather({
+          city: data.name,
+          temp: Math.ceil(data.main.temp),
+          day:
+            data.dt < data.sys.sunrise || data.dt > data.sys.sunset
+              ? false
+              : true,
+          weather: getWeatherCondition(data.weather[0].main),
         });
       })
       .catch(console.error);
-  }
+  });
 
-  getWeatherCondition(apiWeatherMain) {
+  function getWeatherCondition(apiWeatherMain) {
     if (apiWeatherMain === "Drizzle") return "Rain";
     else if (apiWeatherMain === "Mist" || apiWeatherMain === "Smoke")
       return "Fog";
     else return apiWeatherMain;
   }
 
-  handleCloseModal = () => {
-    window.removeEventListener("keydown", this.handleEsc);
-    this.setState({ activeModal: "" });
+  const handleCloseModal = () => {
+    window.removeEventListener("keydown", handleEsc);
+    setActiveModal("");
   };
 
-  handleCreateModal = () => {
-    window.addEventListener("keydown", this.handleEsc);
-    this.setState({ activeModal: "create" });
+  const handleCreateModal = () => {
+    window.addEventListener("keydown", handleEsc);
+    setActiveModal("create");
   };
 
-  handlePreviewModal = () => {
-    window.addEventListener("keydown", this.handleEsc);
-    this.setState({ activeModal: "preview" });
+  const handlePreviewModal = (card) => {
+    window.addEventListener("keydown", handleEsc);
+    setSelectedCard(card);
+    setActiveModal("preview");
   };
 
-  handleEsc = (e) => {
-    if (e.key === "Escape") this.handleCloseModal();
+  const handleEsc = (e) => {
+    if (e.key === "Escape") handleCloseModal();
   };
 
-  render() {
-    return (
-      <div className="page">
-        <Header
-          onCreateModal={this.handleCreateModal}
-          weather={this.state.weather}
+  return (
+    <div className="page">
+      <Header onCreateModal={handleCreateModal} weather={weather} />
+      <Main onPreviewModal={handlePreviewModal} weather={weather} />
+      {activeModal === "create" && (
+        <ModalWithForm
+          title="New Garment"
+          name="new-garment"
+          buttonText="Add garment"
+          onClose={handleCloseModal}
+        >
+          <AddGarmentForm />
+        </ModalWithForm>
+      )}
+      {activeModal === "preview" && (
+        <ItemModal
+          card={{
+            _id: selectedCard._id,
+            name: selectedCard.name,
+            weather: selectedCard.weather,
+            link: selectedCard.link,
+          }}
+          onClose={handleCloseModal}
         />
-        <Main
-          onPreviewModal={this.handlePreviewModal}
-          weather={this.state.weather}
-        />
-        {this.state.activeModal === "create" && (
-          <ModalWithForm
-            title="New Garment"
-            name="new-garment"
-            buttonText="Add garment"
-            onClose={this.handleCloseModal}
-          >
-            <AddGarmentForm />
-          </ModalWithForm>
-        )}
-        {this.state.activeModal === "preview" && (
-          <ItemModal
-            card={{
-              _id: 1,
-              name: "Hoodie",
-              weather: "warm",
-              link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8",
-            }}
-            onClose={this.handleCloseModal}
-          />
-        )}
-        <Footer />
-      </div>
-    );
-  }
+      )}
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
