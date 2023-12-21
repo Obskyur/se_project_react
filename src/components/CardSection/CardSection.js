@@ -16,7 +16,7 @@ function CardSection(props) {
 
   const filteredCards = defaultClothingItems.filter((item) => {
     return item.weather.toLowerCase() === weatherType;
-  })
+  });
 
   return (
     <div className="card-section__container">
@@ -25,7 +25,11 @@ function CardSection(props) {
       </h2>
       <section className="card-section">
         {filteredCards.map((card) => (
-          <ItemCard onPreviewModal={props.onPreviewModal} card={card} key={card._id} />
+          <ItemCard
+            onPreviewModal={props.onPreviewModal}
+            card={card}
+            key={card._id}
+          />
         ))}
       </section>
     </div>
