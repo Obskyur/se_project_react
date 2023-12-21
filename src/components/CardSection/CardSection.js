@@ -1,10 +1,9 @@
 import "./CardSection.css";
-import { useMemo } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import { defaultClothingItems } from "../../utils/constants";
 
 function CardSection(props) {
-  const weatherType = useMemo(() => {
+  const getWeatherType = () => {
     return props.weather.temp > 84
       ? "hot"
       : props.weather.temp > 56
@@ -12,7 +11,8 @@ function CardSection(props) {
       : props.weather.temp > 32
       ? "cold"
       : "very cold";
-  }, [props.weather]);
+  };
+  const weatherType = getWeatherType();
 
   const filteredCards = defaultClothingItems.filter((item) => {
     return item.weather.toLowerCase() === weatherType;
