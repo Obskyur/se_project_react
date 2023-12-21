@@ -27,7 +27,7 @@ const processServerResponse = (res) => {
 // https://stackoverflow.com/questions/66245245/how-store-latitude-and-longitude-from-navigator-geolocation-getcurrentposition
 let lat, long;
 // Creating a promise out of the function
-let getLocationPromise = new Promise((resolve, reject) => {
+const getLocationPromise = new Promise((resolve, reject) => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
       lat = position.coords.latitude;
