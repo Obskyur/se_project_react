@@ -1,4 +1,4 @@
-import React from "react";
+import { Component } from "react";
 import "./App.css";
 import Header from "../Header/Header.js";
 import Main from "../Main/Main.js";
@@ -7,7 +7,7 @@ import ItemModal from "../ItemModal/ItemModal.js";
 import AddGarmentForm from "../AddGarmentForm/AddGarmentForm";
 import Footer from "../Footer/Footer.js";
 import getWeather from "../../utils/weatherApi.js";
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
@@ -25,11 +25,12 @@ class App extends React.Component {
   componentDidMount() {
     getWeather()
       .then((data) => {
+        console.log(data);
         this.setState({
           weather: {
             city: data.name,
             temp: Math.ceil(data.main.temp),
-            day: data.dt < data.sys.sunrise ? false : true,
+            day: (data.dt < data.sys.sunrise || data.dt > data.sys.sunset) ? false : true,
             weather: this.getWeatherCondition(data.weather[0].main),
           },
         });
@@ -38,8 +39,8 @@ class App extends React.Component {
   }
 
   getWeatherCondition(apiWeatherMain) {
-    if (apiWeatherMain == "Drizzle") return "Rain";
-    else if (apiWeatherMain == "Mist" || apiWeatherMain == "Smoke")
+    if (apiWeatherMain === "Drizzle") return "Rain";
+    else if (apiWeatherMain === "Mist" || apiWeatherMain === "Smoke")
       return "Fog";
     else return apiWeatherMain;
   }
