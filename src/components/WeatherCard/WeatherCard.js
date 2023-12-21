@@ -3,7 +3,6 @@ import "./WeatherCard.css";
 import { weatherOptions } from "../../utils/constants.js";
 class WeatherCard extends Component {
   render() {
-    console.log(this);
     this.weatherOption = weatherOptions.find((i) => {
       return (
         i.day === this.props.weather.day &&

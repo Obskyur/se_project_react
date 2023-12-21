@@ -25,7 +25,6 @@ class App extends Component {
   componentDidMount() {
     getWeather()
       .then((data) => {
-        console.log(data);
         this.setState({
           weather: {
             city: data.name,
