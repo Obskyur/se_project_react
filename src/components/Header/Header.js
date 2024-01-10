@@ -1,6 +1,7 @@
 import "./Header.css";
 import Logo from "../../images/logo.svg";
 import UserPic from "../../images/userpic.png";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch.js";
 
 function Header({ weather, onCreateModal }) {
   const currentDate = new Date().toLocaleString("default", {
@@ -14,6 +15,7 @@ function Header({ weather, onCreateModal }) {
       <div className="header__details">
         {currentDate}, {weather.city}
       </div>
+      <ToggleSwitch />
       <button className="header__add-clothes-button" onClick={onCreateModal}>
         + Add Clothes
       </button>

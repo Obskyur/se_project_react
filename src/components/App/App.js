@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "../Header/Header.js";
-import ToggleSwitch from "../ToggleSwitch/ToggleSwitch.js";
 import Main from "../Main/Main.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal.js";
@@ -62,7 +61,6 @@ function App() {
         value={{ currentTempUnit, handleTempUnitToggle }}
       >
         <Header onCreateModal={handleCreateModal} weather={weather} />
-        <ToggleSwitch />
         <Main onPreviewModal={handlePreviewModal} weather={weather} />
       </CurrentTemperatureUnitContext.Provider>
       {activeModal === "create" && (
