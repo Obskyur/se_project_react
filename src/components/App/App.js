@@ -62,10 +62,7 @@ function App() {
         value={{ currentTempUnit, handleTempUnitToggle }}
       >
         <Header onCreateModal={handleCreateModal} weather={weather} />
-        <ToggleSwitch
-          checked={currentTempUnit === "F"}
-          handleClick={handleTempUnitToggle}
-        />
+        <ToggleSwitch />
         <Main onPreviewModal={handlePreviewModal} weather={weather} />
       </CurrentTemperatureUnitContext.Provider>
       {activeModal === "create" && (
