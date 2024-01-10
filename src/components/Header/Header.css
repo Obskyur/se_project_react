@@ -2,7 +2,7 @@ header {
   display: flex;
   height: 40px;
   padding: 0;
-  margin: 32px 32px 0;
+  margin: 32px 40px 0;
   align-items: center;
   font-weight: 700;
   font-size: 20px;
@@ -32,6 +32,20 @@ header {
 }
 
 .header__add-clothes-button:hover {
+  cursor: pointer;
+}
+
+.header__profile {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.header__profile:visited {
+  color: black;
+}
+
+.header__profile:hover {
   cursor: pointer;
 }
 

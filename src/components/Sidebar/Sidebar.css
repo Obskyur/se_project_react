@@ -1,0 +1,27 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+}
+
+.sidebar__profile {
+  text-decoration: none;
+  display: flex;
+}
+
+.sidebar__user {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar__user-name {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.sidebar__user-pic {
+  width: 56px;
+  height: 56px;
+  margin-right: 16px;
+}

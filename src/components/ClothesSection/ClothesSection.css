@@ -1,0 +1,32 @@
+.clothes-section__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.clothes-section__title {
+  margin: 16px 0;
+  font-size: 20px;
+}
+
+.clothes-section__add-button {
+  margin-left: 16px;
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: 'Cabinet Grotesk';
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  color: rgb(0, 0, 0, 0.6);
+}
+
+.clothes-section__add-button:hover {
+  cursor: pointer;
+}
+
+.clothes-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 324px);
+  gap: 20px;
+}

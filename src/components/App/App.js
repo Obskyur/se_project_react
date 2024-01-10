@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
 import "./App.css";
-import Header from "../Header/Header.js";
-import Main from "../Main/Main.js";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import ItemModal from "../ItemModal/ItemModal.js";
+import { useState, useEffect } from "react";
+import { Route } from "react-router-dom";
+import getWeather from "../../utils/weatherApi.js";
 import AddGarmentForm from "../AddGarmentForm/AddGarmentForm";
 import Footer from "../Footer/Footer.js";
-import getWeather from "../../utils/weatherApi.js";
+import Header from "../Header/Header.js";
+import ItemModal from "../ItemModal/ItemModal.js";
+import Main from "../Main/Main.js";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import Profile from "../Profile/Profile.js";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTempUnitContext.js";
 
 function App() {
@@ -61,7 +63,12 @@ function App() {
         value={{ currentTempUnit, handleTempUnitToggle }}
       >
         <Header onCreateModal={handleCreateModal} weather={weather} />
-        <Main onPreviewModal={handlePreviewModal} weather={weather} />
+        <Route exact path="/">
+          <Main onCardClick={handlePreviewModal} weather={weather} />
+        </Route>
+        <Route path="/profile/">
+          <Profile onCardClick={handlePreviewModal} />
+        </Route>
       </CurrentTemperatureUnitContext.Provider>
       {activeModal === "create" && (
         <ModalWithForm

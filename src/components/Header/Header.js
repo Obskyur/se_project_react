@@ -1,4 +1,5 @@
 import "./Header.css";
+import { Link } from "react-router-dom";
 import Logo from "../../images/logo.svg";
 import UserPic from "../../images/userpic.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch.js";
@@ -11,7 +12,9 @@ function Header({ weather, onCreateModal }) {
 
   return (
     <header>
-      <img src={Logo} className="header__logo" alt="WTWR Logo" />
+      <Link to="/">
+        <img src={Logo} className="header__logo" alt="WTWR Logo" />
+      </Link>
       <div className="header__details">
         {currentDate}, {weather.city}
       </div>
@@ -19,8 +22,10 @@ function Header({ weather, onCreateModal }) {
       <button className="header__add-clothes-button" onClick={onCreateModal}>
         + Add Clothes
       </button>
-      <div className="header__user-name">Terrence Tegegne</div>
-      <img src={UserPic} className="header__user-pic" alt="User" />
+      <Link to="/profile" className="header__profile">
+        <div className="header__user-name">Terrence Tegegne</div>
+        <img src={UserPic} className="header__user-pic" alt="User" />
+      </Link>
     </header>
   );
 }

@@ -2,13 +2,9 @@ import "./CardSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 import { defaultClothingItems } from "../../utils/constants";
 
-function CardSection({weather, onPreviewModal}) {
+function CardSection({ weather, onCardClick }) {
   const getWeatherType = () => {
-    return weather.temp > 84
-      ? "hot"
-      : weather.temp > 56
-        ? "moderate"
-        : "cold"
+    return weather.temp > 84 ? "hot" : weather.temp > 56 ? "moderate" : "cold";
   };
   const weatherType = getWeatherType();
 
@@ -23,11 +19,7 @@ function CardSection({weather, onPreviewModal}) {
       </h2>
       <section className="card-section">
         {filteredCards.map((card) => (
-          <ItemCard
-            onPreviewModal={onPreviewModal}
-            card={card}
-            key={card._id}
-          />
+          <ItemCard onCardClick={onCardClick} card={card} key={card._id} />
         ))}
       </section>
     </div>

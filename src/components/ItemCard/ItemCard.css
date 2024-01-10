@@ -5,6 +5,10 @@
   height: 328px;
 }
 
+.card:hover {
+  cursor: pointer;
+}
+
 .card__title {
   position: absolute;
   margin: 15px auto 0;
