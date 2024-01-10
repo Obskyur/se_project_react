@@ -1,0 +1,7 @@
+{
+  "search.exclude": {
+    "**/.bower-components": true,
+    "**/bower_components": false
+  },
+  "search.useGlobalIgnoreFiles": true
+}

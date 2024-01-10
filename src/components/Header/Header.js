@@ -1,5 +1,4 @@
 import "./Header.css";
-import { useState } from "react";
 import Logo from "../../images/logo.svg";
 import UserPic from "../../images/userpic.png";
 
