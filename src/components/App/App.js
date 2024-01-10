@@ -21,7 +21,7 @@ function App() {
       .then((data) => {
         setWeather({
           city: data.name,
-          temp: Math.ceil(data.main.temp),
+          temp: Math.round(data.main.temp),
           day:
             data.dt < data.sys.sunrise || data.dt > data.sys.sunset
               ? false
