@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import AddGarmentForm from "../AddGarmentForm/AddGarmentForm";
 
 function ModalWithForm({ title, name, buttonText, onClose, onSubmit }) {
+  // Keep track of form field values to use during onSubmit()
   const [values, setValues] = useState({});
-
   const handleFormFieldChange = (field, value) => {
     setValues({ ...values, [field]: value });
   }

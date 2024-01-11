@@ -23,7 +23,7 @@ function App() {
           city: data.name,
           temp: {
             F: Math.round(data.main.temp),
-            C: Math.round((data.main.temp - 32) * 5/9),
+            C: Math.round(((data.main.temp - 32) * 5) / 9),
           },
           day:
             data.dt < data.sys.sunrise || data.dt > data.sys.sunset
@@ -42,10 +42,10 @@ function App() {
     else return apiWeatherMain;
   }
 
-  const handleAddItem = (card) => {
+  const handleAddItemSubmit = (card) => {
     console.log(card);
     handleCloseModal();
-  }
+  };
 
   const handleCloseModal = () => {
     setActiveModal("");
@@ -74,7 +74,10 @@ function App() {
           <Main onCardClick={handlePreviewModal} weather={weather} />
         </Route>
         <Route path="/profile/">
-          <Profile onCardClick={handlePreviewModal} onAddItemClick={handleCreateModal} />
+          <Profile
+            onCardClick={handlePreviewModal}
+            onAddItemClick={handleCreateModal}
+          />
         </Route>
       </CurrentTempUnitContext.Provider>
       {activeModal === "create" && (
@@ -83,7 +86,7 @@ function App() {
           name="new-garment"
           buttonText="Add garment"
           onClose={handleCloseModal}
-          onSubmit={handleAddItem}
+          onSubmit={handleAddItemSubmit}
         />
       )}
       {activeModal === "preview" && (
