@@ -9,7 +9,7 @@ import ItemModal from "../ItemModal/ItemModal.js";
 import Main from "../Main/Main.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import Profile from "../Profile/Profile.js";
-import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTempUnitContext.js";
+import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext.js";
 
 function App() {
   const [weather, setWeather] = useState({});
@@ -22,7 +22,10 @@ function App() {
       .then((data) => {
         setWeather({
           city: data.name,
-          temp: Math.round(data.main.temp),
+          temp: {
+            F: Math.round(data.main.temp),
+            C: Math.round((data.main.temp - 32) * 5/9),
+          },
           day:
             data.dt < data.sys.sunrise || data.dt > data.sys.sunset
               ? false
@@ -59,7 +62,7 @@ function App() {
 
   return (
     <div className="page">
-      <CurrentTemperatureUnitContext.Provider
+      <CurrentTempUnitContext.Provider
         value={{ currentTempUnit, handleTempUnitToggle }}
       >
         <Header onCreateModal={handleCreateModal} weather={weather} />
@@ -69,7 +72,7 @@ function App() {
         <Route path="/profile/">
           <Profile onCardClick={handlePreviewModal} />
         </Route>
-      </CurrentTemperatureUnitContext.Provider>
+      </CurrentTempUnitContext.Provider>
       {activeModal === "create" && (
         <ModalWithForm
           title="New Garment"
