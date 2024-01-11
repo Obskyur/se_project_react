@@ -1,7 +1,23 @@
-import { useEffect } from "react";
 import "./ModalWithForm.css";
+import { useEffect, useState } from "react";
+import AddGarmentForm from "../AddGarmentForm/AddGarmentForm";
 
-function ModalWithForm({ title, name, buttonText, onClose, children }) {
+function ModalWithForm({ title, name, buttonText, onClose, onSubmit }) {
+  const [values, setValues] = useState({});
+
+  const handleFormFieldChange = (field, value) => {
+    setValues({ ...values, [field]: value });
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    onSubmit({
+      _id: Math.round(Math.random() * 1000000000000),
+      name: values.name,
+      weather: values.weather,
+      link: values.link,
+    });
+  }
 
   // Attach / remove handler to close modal on `Esc` press:
   useEffect(() => {
@@ -24,8 +40,8 @@ function ModalWithForm({ title, name, buttonText, onClose, children }) {
           onClick={onClose}
         />
         <h2 className="form-modal__title">{title}</h2>
-        <form className="form-modal__form" name={name}>
-          {children}
+        <form className="form-modal__form" name={name} onSubmit={handleSubmit}>
+          <AddGarmentForm onChange={handleFormFieldChange} />
           <button className="form-modal__submit-button">
             {buttonText}
           </button>

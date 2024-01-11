@@ -1,15 +1,14 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
+import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext.js";
 import getWeather from "../../utils/weatherApi.js";
-import AddGarmentForm from "../AddGarmentForm/AddGarmentForm";
 import Footer from "../Footer/Footer.js";
 import Header from "../Header/Header.js";
 import ItemModal from "../ItemModal/ItemModal.js";
 import Main from "../Main/Main.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import Profile from "../Profile/Profile.js";
-import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext.js";
 
 function App() {
   const [weather, setWeather] = useState({});
@@ -43,6 +42,11 @@ function App() {
     else return apiWeatherMain;
   }
 
+  const handleAddItem = (card) => {
+    console.log(card);
+    handleCloseModal();
+  }
+
   const handleCloseModal = () => {
     setActiveModal("");
   };
@@ -70,7 +74,7 @@ function App() {
           <Main onCardClick={handlePreviewModal} weather={weather} />
         </Route>
         <Route path="/profile/">
-          <Profile onCardClick={handlePreviewModal} />
+          <Profile onCardClick={handlePreviewModal} onAddItemClick={handleCreateModal} />
         </Route>
       </CurrentTempUnitContext.Provider>
       {activeModal === "create" && (
@@ -79,9 +83,8 @@ function App() {
           name="new-garment"
           buttonText="Add garment"
           onClose={handleCloseModal}
-        >
-          <AddGarmentForm />
-        </ModalWithForm>
+          onSubmit={handleAddItem}
+        />
       )}
       {activeModal === "preview" && (
         <ItemModal
