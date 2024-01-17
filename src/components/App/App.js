@@ -45,8 +45,9 @@ function App() {
   }
 
   const handleAddItemSubmit = (card) => {
-    console.log(card);
+    setClothingItems([card, ...clothingItems]);
     handleCloseModal();
+    console.log(clothingItems);
   };
 
   const handleCloseModal = () => {

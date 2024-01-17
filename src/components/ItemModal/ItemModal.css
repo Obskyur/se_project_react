@@ -37,6 +37,8 @@
 }
 
 .preview-modal__image {
+  max-width: 500px;
+  max-height: 500px;
   border-radius: 20px 20px 0 0;
 }
 
