@@ -7,6 +7,7 @@ import Footer from "../Footer/Footer.js";
 import Header from "../Header/Header.js";
 import ItemModal from "../ItemModal/ItemModal.js";
 import Main from "../Main/Main.js";
+import ModalWithForm from "../ModalWithForm/ModalWithForm.js";
 import AddItemModal from "../AddItemModal/AddItemModal.js";
 import Profile from "../Profile/Profile.js";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.js";
@@ -18,6 +19,12 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [clothingItems, setClothingItems] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
+
+  // Keep track of form field values to use during onSubmit()
+  const [values, setValues] = useState({});
+  const handleFormFieldChange = (field, value) => {
+    setValues({ ...values, [field]: value });
+  };
 
   useEffect(() => {
     getWeather()
@@ -53,7 +60,14 @@ function App() {
     else return apiWeatherMain;
   }
 
-  const handleAddItemSubmit = (card) => {
+  const handleAddItemSubmit = () => {
+    const card = {
+      _id: Math.round(Math.random() * 1000000000000),
+      name: values.name,
+      weather: values.weather,
+      imageUrl: values.link,
+    };
+
     addItem({
       name: card.name,
       weather: card.weather,
@@ -120,13 +134,15 @@ function App() {
         </Route>
       </CurrentTempUnitContext.Provider>
       {activeModal === "create" && (
-        <AddItemModal
+        <ModalWithForm
           title="New Garment"
           name="new-garment"
           buttonText="Add garment"
           onClose={handleCloseModal}
           onSubmit={handleAddItemSubmit}
-        />
+        >
+          <AddItemModal onChange={handleFormFieldChange} />
+        </ModalWithForm>
       )}
       {activeModal === "preview" && (
         <ItemModal
