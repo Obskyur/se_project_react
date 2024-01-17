@@ -15,7 +15,7 @@ function ModalWithForm({ title, name, buttonText, onClose, onSubmit }) {
       _id: Math.round(Math.random() * 1000000000000),
       name: values.name,
       weather: values.weather,
-      link: values.link,
+      imageUrl: values.link,
     });
   }
 

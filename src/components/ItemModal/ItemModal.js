@@ -22,7 +22,11 @@ function ItemModal({ card, onClose, onDelete }) {
           className="preview-modal__close-button"
           onClick={onClose}
         />
-        <img className="preview-modal__image" src={card.link} alt={card.name} />
+        <img
+          className="preview-modal__image"
+          src={card.imageUrl}
+          alt={card.name}
+        />
         <div className="preview-modal__title-section">
           <h2 className="preview-modal__title">{card.name}</h2>
           <button

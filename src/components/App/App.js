@@ -10,13 +10,13 @@ import Main from "../Main/Main.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import Profile from "../Profile/Profile.js";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.js";
-import { defaultClothingItems } from "../../utils/constants.js";
+import { getItems, addItem, deleteItem } from "../../utils/api.js";
 
 function App() {
   const [weather, setWeather] = useState({});
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
   const [activeModal, setActiveModal] = useState("");
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
 
   useEffect(() => {
@@ -38,6 +38,12 @@ function App() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    getItems()
+      .then((res) => setClothingItems(res))
+      .catch(console.error);
+  }, []);
+
   function getWeatherCondition(apiWeatherMain) {
     if (apiWeatherMain === "Drizzle") return "Rain";
     else if (apiWeatherMain === "Mist" || apiWeatherMain === "Smoke")
@@ -46,16 +52,26 @@ function App() {
   }
 
   const handleAddItemSubmit = (card) => {
-    setClothingItems([card, ...clothingItems]);
+    addItem({
+      name: card.name,
+      weather: card.weather,
+      imageUrl: card.imageUrl,
+    })
+      .then(setClothingItems([card, ...clothingItems]))
+      .catch(console.error);
     handleCloseModal();
   };
 
   const handleCardDelete = () => {
-    setClothingItems(
-      clothingItems.filter((card) => {
-        return card._id !== selectedCard._id;
-      })
-    );
+    deleteItem(selectedCard._id)
+      .then(
+        setClothingItems(
+          clothingItems.filter((card) => {
+            return card._id !== selectedCard._id;
+          })
+        )
+      )
+      .catch(console.error);
     handleCloseModal();
   };
 
@@ -116,7 +132,7 @@ function App() {
             _id: selectedCard._id,
             name: selectedCard.name,
             weather: selectedCard.weather,
-            link: selectedCard.link,
+            imageUrl: selectedCard.imageUrl,
           }}
           onClose={handleCloseModal}
           onDelete={openConfirmationModal}
