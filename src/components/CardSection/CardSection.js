@@ -1,17 +1,20 @@
 import "./CardSection.css";
 import ItemCard from "../ItemCard/ItemCard";
-import { defaultClothingItems } from "../../utils/constants";
 import { useContext } from "react";
 import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext";
 
-function CardSection({ weather, onCardClick }) {
+function CardSection({ weather, onCardClick, items }) {
   const { currentTempUnit } = useContext(CurrentTempUnitContext);
   const getWeatherType = () => {
-    return weather.temp?.F > 84 ? "hot" : weather.temp?.F > 56 ? "moderate" : "cold";
+    return weather.temp?.F > 70
+      ? "hot"
+      : weather.temp?.F > 56
+      ? "moderate"
+      : "cold";
   };
   const weatherType = getWeatherType();
 
-  const filteredCards = defaultClothingItems.filter((item) => {
+  const filteredCards = items.filter((item) => {
     return item.weather.toLowerCase() === weatherType;
   });
 

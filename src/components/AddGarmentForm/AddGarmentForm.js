@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./AddGarmentForm.css";
 
 function AddGarmentForm({ onChange }) {

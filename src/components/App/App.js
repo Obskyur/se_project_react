@@ -9,11 +9,13 @@ import ItemModal from "../ItemModal/ItemModal.js";
 import Main from "../Main/Main.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import Profile from "../Profile/Profile.js";
+import { defaultClothingItems } from "../../utils/constants.js";
 
 function App() {
   const [weather, setWeather] = useState({});
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
   const [activeModal, setActiveModal] = useState("");
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [selectedCard, setSelectedCard] = useState({});
 
   useEffect(() => {
@@ -71,10 +73,15 @@ function App() {
       >
         <Header onCreateModal={handleCreateModal} weather={weather} />
         <Route exact path="/">
-          <Main onCardClick={handlePreviewModal} weather={weather} />
+          <Main
+            items={clothingItems}
+            onCardClick={handlePreviewModal}
+            weather={weather}
+          />
         </Route>
         <Route path="/profile/">
           <Profile
+            items={clothingItems}
             onCardClick={handlePreviewModal}
             onAddItemClick={handleCreateModal}
           />
