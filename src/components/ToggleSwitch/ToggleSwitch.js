@@ -1,17 +1,15 @@
 import "./ToggleSwitch.css";
 import { useContext, useEffect, useState } from "react";
-import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext";
+import { CurrentTempUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 function ToggleSwitch() {
-  
-  const { currentTempUnit, handleTempUnitToggle } = useContext(CurrentTempUnitContext);
-  const [ isChecked, setIsChecked ] = useState(currentTempUnit === "C");
+  const { currentTempUnit, handleTempUnitToggle } = useContext(
+    CurrentTempUnitContext
+  );
+  const [isChecked, setIsChecked] = useState(currentTempUnit === "C");
 
-  useEffect(() =>
-    setIsChecked(currentTempUnit === "C"),
-      [currentTempUnit]
-  )
-  
+  useEffect(() => setIsChecked(currentTempUnit === "C"), [currentTempUnit]);
+
   return (
     <>
       <input
@@ -25,7 +23,7 @@ function ToggleSwitch() {
         className="toggle-switch__background"
         htmlFor="toggle-switch__checkbox"
       >
-        <span className="toggle-switch__button"/>
+        <span className="toggle-switch__button" />
         <span className="toggle-switch__background-label">F</span>
         <span className="toggle-switch__background-label">C</span>
       </label>

@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
-import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext.js";
+import { CurrentTempUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 import getWeather from "../../utils/weatherApi.js";
 import Footer from "../Footer/Footer.js";
 import Header from "../Header/Header.js";
