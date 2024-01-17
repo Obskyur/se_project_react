@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer.js";
 import Header from "../Header/Header.js";
 import ItemModal from "../ItemModal/ItemModal.js";
 import Main from "../Main/Main.js";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import AddItemModal from "../AddItemModal/AddItemModal.js";
 import Profile from "../Profile/Profile.js";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.js";
 import { getItems, addItem, deleteItem } from "../../utils/api.js";
@@ -40,7 +40,9 @@ function App() {
 
   useEffect(() => {
     getItems()
-      .then((res) => setClothingItems(res))
+      .then((res) => {
+        setClothingItems(res);
+      })
       .catch(console.error);
   }, []);
 
@@ -118,7 +120,7 @@ function App() {
         </Route>
       </CurrentTempUnitContext.Provider>
       {activeModal === "create" && (
-        <ModalWithForm
+        <AddItemModal
           title="New Garment"
           name="new-garment"
           buttonText="Add garment"

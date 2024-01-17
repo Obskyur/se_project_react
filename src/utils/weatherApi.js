@@ -3,6 +3,7 @@
  ╘═════*/
 
 import { apiKey } from "./constants.js";
+import { handleResponse } from "./api.js";
 
 export default function getWeather() {
   return getLocationPromise
@@ -10,14 +11,8 @@ export default function getWeather() {
       const apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&units=imperial&appid=${apiKey}`;
 
       return fetch(apiURL, { method: "GET" })
-        .then(processServerResponse);
+        .then(handleResponse);
     })
-}
-
-const processServerResponse = (res) => {
-  return res.ok
-  ? res.json()
-  : Promise.reject(`Error: ${res.status}`);
 }
 
 /*══════════╕

@@ -1,7 +1,7 @@
 const baseUrl = 'http://localhost:3001';
 const baseHeaders = { "Content-Type": "application/json" };
 
-function handleResponse(res) {
+export function handleResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
 
@@ -25,5 +25,6 @@ export function addItem({name, weather, imageUrl}) {
 export function deleteItem(itemId) {
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
+    headers: baseHeaders,
   }).then(handleResponse);
 }
