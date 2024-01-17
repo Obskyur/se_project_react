@@ -72,3 +72,7 @@ input[type="radio"] {
   font-family: 'Cabinet Grotesk';
   font-size: 16px;
 }
+
+.form-modal__submit-button:hover {
+  cursor: pointer;
+}

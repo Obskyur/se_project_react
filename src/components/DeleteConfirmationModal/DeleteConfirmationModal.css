@@ -1,4 +1,4 @@
-.preview-modal {
+.delete-modal {
   position: fixed;
   top: 0;
   right: 0;
@@ -8,23 +8,19 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.3);
-  font-family: 'Cabinet Grotesk';
-  font-weight: 700;
 }
 
-.preview-modal__content {
-  padding: 0;
+.delete-modal__content {
   position: fixed;
   display: flex;
   flex-direction: column;
   background-color: white;
-  max-width: 498px;
-  max-height: 610px;
+  max-width: 670px;
   width: 100%;
   border-radius: 20px;
 }
 
-.preview-modal__close-button {
+.delete-modal__close-button {
   position: absolute;
   top: 22px;
   right: 30px;
@@ -36,39 +32,43 @@
   cursor: pointer;
 }
 
-.preview-modal__image {
-  max-width: 500px;
-  max-height: 500px;
-  border-radius: 20px 20px 0 0;
-}
-
-.preview-modal__title-section {
+.delete-modal__form {
   display: flex;
-  justify-content: space-between;
-  margin: 20px 32px 0;
+  flex-direction: column;
+  margin: 60px 0;
+  align-items: center;
 }
 
-.preview-modal__title {
+.delete-modal__text {
   margin: 0;
-  font-size: 20px;
+  text-align: center;
 }
 
-.preview-modal__delete-button {
-  margin: 0;
+.delete-modal__confirm-button {
+  margin-top: 40px;
   padding: 0;
   border: none;
   background: none;
   font-family: 'Cabinet Grotesk';
-  font-weight: 700;
   font-size: 20px;
+  font-weight: 700;
   color: #FF4D00;
 }
 
-.preview-modal__delete-button:hover {
+.delete-modal__confirm-button:hover {
   cursor: pointer;
 }
 
-.preview-modal__weather-type {
-  margin: 12px 0 32px 32px;
+.delete-modal__cancel-button {
+  margin-top: 24px;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: 'Cabinet Grotesk';
   font-size: 20px;
+  font-weight: 700;
+}
+
+.delete-modal__cancel-button:hover {
+  cursor: pointer;
 }

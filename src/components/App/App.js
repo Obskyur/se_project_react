@@ -9,6 +9,7 @@ import ItemModal from "../ItemModal/ItemModal.js";
 import Main from "../Main/Main.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import Profile from "../Profile/Profile.js";
+import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.js";
 import { defaultClothingItems } from "../../utils/constants.js";
 
 function App() {
@@ -47,7 +48,15 @@ function App() {
   const handleAddItemSubmit = (card) => {
     setClothingItems([card, ...clothingItems]);
     handleCloseModal();
-    console.log(clothingItems);
+  };
+
+  const handleCardDelete = () => {
+    setClothingItems(
+      clothingItems.filter((card) => {
+        return card._id !== selectedCard._id;
+      })
+    );
+    handleCloseModal();
   };
 
   const handleCloseModal = () => {
@@ -56,6 +65,10 @@ function App() {
 
   const handleCreateModal = () => {
     setActiveModal("create");
+  };
+
+  const openConfirmationModal = () => {
+    setActiveModal("confirm-delete");
   };
 
   const handleTempUnitToggle = () => {
@@ -106,6 +119,13 @@ function App() {
             link: selectedCard.link,
           }}
           onClose={handleCloseModal}
+          onDelete={openConfirmationModal}
+        />
+      )}
+      {activeModal === "confirm-delete" && (
+        <DeleteConfirmationModal
+          onClose={handleCloseModal}
+          onConfirm={handleCardDelete}
         />
       )}
       <Footer />
