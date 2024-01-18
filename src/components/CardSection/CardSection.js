@@ -29,7 +29,11 @@ function CardSection({ weather, onCardClick, items }) {
       </h2>
       <section className="card-section">
         {filteredCards.map((card) => (
-          <ItemCard onCardClick={onCardClick} card={card} key={card._id} />
+          <ItemCard
+            onCardClick={onCardClick}
+            card={card}
+            key={card._id || 99}
+          />
         ))}
       </section>
     </div>

@@ -1,6 +1,5 @@
 import "./ModalWithForm.css";
-import { useEffect, useState } from "react";
-import AddItemModal from "../AddItemModal/AddItemModal";
+import { useEffect } from "react";
 
 function ModalWithForm({
   title,

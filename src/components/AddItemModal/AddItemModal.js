@@ -1,17 +1,44 @@
 import "./AddItemModal.css";
+import { useState } from "react";
+import ModalWithForm from "../ModalWithForm/ModalWithForm.js";
 
-function AddItemModal({ onChange }) {
-  const handleChange = (e) => {
-    onChange(e.target.name, e.target.value);
+function AddItemModal({
+  title,
+  name,
+  buttonText,
+  onClose,
+  onSubmit,
+}) {
+  // Keep track of form field values to use during onSubmit()
+  const [values, setValues] = useState({});
+  const handleFormFieldChange = (e) => {
+    console.log(e);
+    setValues({ ...values, [e.target.name]: e.target.value });
+    console.log(values);
+  };
+
+  const handleSubmit = () => {
+    console.log(values);
+    onSubmit({
+      name: values.name,
+      weather: values.weather,
+      imageUrl: values.link,
+    });
   };
 
   return (
-    <>
+    <ModalWithForm
+      title={title}
+      name={name}
+      buttonText={buttonText}
+      onClose={onClose}
+      onSubmit={handleSubmit}
+    >
       <label>Name</label>
       <input
         type="text"
         name="name"
-        onChange={handleChange}
+        onChange={handleFormFieldChange}
         minLength="1"
         maxLength="30"
         placeholder="Name"
@@ -20,7 +47,7 @@ function AddItemModal({ onChange }) {
       <input
         type="url"
         name="link"
-        onChange={handleChange}
+        onChange={handleFormFieldChange}
         minLength="10"
         placeholder="Image URL"
       />
@@ -32,7 +59,7 @@ function AddItemModal({ onChange }) {
             name="weather"
             id="hot"
             value="hot"
-            onChange={handleChange}
+            onChange={handleFormFieldChange}
           />
           <label>Hot</label>
         </div>
@@ -42,7 +69,7 @@ function AddItemModal({ onChange }) {
             name="weather"
             id="warm"
             value="warm"
-            onChange={handleChange}
+            onChange={handleFormFieldChange}
           />
           <label>Warm</label>
         </div>
@@ -52,12 +79,12 @@ function AddItemModal({ onChange }) {
             name="weather"
             id="cold"
             value="cold"
-            onChange={handleChange}
+            onChange={handleFormFieldChange}
           />
           <label>Cold</label>
         </div>
       </div>
-    </>
+    </ModalWithForm>
   );
 }
 
