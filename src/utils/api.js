@@ -1,17 +1,20 @@
 const baseUrl = 'http://localhost:3001';
 const baseHeaders = { "Content-Type": "application/json" };
 
+function request(url, options) {
+  return fetch(url, options).then(handleResponse);
+}
+
 export function handleResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
 
 export function getItems() {
-  return fetch(`${baseUrl}/items`)
-    .then(handleResponse);
+  return request(`${baseUrl}/items`);
 }
 
 export function addItem({name, weather, imageUrl}) {
-  return fetch(`${baseUrl}/items`, {
+  return request(`${baseUrl}/items`, {
     method: "POST",
     headers: baseHeaders,
     body: JSON.stringify({
@@ -19,12 +22,12 @@ export function addItem({name, weather, imageUrl}) {
       weather: weather,
       imageUrl: imageUrl,
     })
-  }).then(handleResponse);
+  });
 }
 
 export function deleteItem(itemId) {
-  return fetch(`${baseUrl}/items/${itemId}`, {
+  return request(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
     headers: baseHeaders,
-  }).then(handleResponse);
+  });
 }

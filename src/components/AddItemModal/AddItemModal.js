@@ -1,24 +1,11 @@
 import "./AddItemModal.css";
-import { useState } from "react";
+import useForm from "../../hooks/useForm.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.js";
 
-function AddItemModal({
-  title,
-  name,
-  buttonText,
-  onClose,
-  onSubmit,
-}) {
-  // Keep track of form field values to use during onSubmit()
-  const [values, setValues] = useState({});
-  const handleFormFieldChange = (e) => {
-    console.log(e);
-    setValues({ ...values, [e.target.name]: e.target.value });
-    console.log(values);
-  };
+function AddItemModal({ title, name, buttonText, onClose, onSubmit }) {
+  const { values, handleFormFieldChange } = useForm({});
 
   const handleSubmit = () => {
-    console.log(values);
     onSubmit({
       name: values.name,
       weather: values.weather,
@@ -38,6 +25,7 @@ function AddItemModal({
       <input
         type="text"
         name="name"
+        value={values.name || ""}
         onChange={handleFormFieldChange}
         minLength="1"
         maxLength="30"
@@ -47,6 +35,7 @@ function AddItemModal({
       <input
         type="url"
         name="link"
+        value={values.imageUrl || ""}
         onChange={handleFormFieldChange}
         minLength="10"
         placeholder="Image URL"
@@ -54,34 +43,40 @@ function AddItemModal({
       <div>
         <label>Select the Weather Type</label>
         <div className="modal__radio-option">
-          <input
-            type="radio"
-            name="weather"
-            id="hot"
-            value="hot"
-            onChange={handleFormFieldChange}
-          />
-          <label>Hot</label>
+          <label>
+            <input
+              type="radio"
+              name="weather"
+              id="hot"
+              value="hot"
+              onChange={handleFormFieldChange}
+            />
+            Hot
+          </label>
         </div>
         <div className="modal__radio-option">
-          <input
-            type="radio"
-            name="weather"
-            id="warm"
-            value="warm"
-            onChange={handleFormFieldChange}
-          />
-          <label>Warm</label>
+          <label>
+            <input
+              type="radio"
+              name="weather"
+              id="warm"
+              value="warm"
+              onChange={handleFormFieldChange}
+            />
+            Warm
+          </label>
         </div>
         <div className="modal__radio-option">
-          <input
-            type="radio"
-            name="weather"
-            id="cold"
-            value="cold"
-            onChange={handleFormFieldChange}
-          />
-          <label>Cold</label>
+          <label>
+            <input
+              type="radio"
+              name="weather"
+              id="cold"
+              value="cold"
+              onChange={handleFormFieldChange}
+            />
+            Cold
+          </label>
         </div>
       </div>
     </ModalWithForm>

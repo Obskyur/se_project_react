@@ -9,7 +9,7 @@ function CardSection({ weather, onCardClick, items }) {
     return weather.temp?.F > 70
       ? "hot"
       : weather.temp?.F > 56
-      ? "moderate"
+      ? "warm"
       : "cold";
   };
   const weatherType = getWeatherType();
@@ -32,7 +32,7 @@ function CardSection({ weather, onCardClick, items }) {
           <ItemCard
             onCardClick={onCardClick}
             card={card}
-            key={card._id || 99}
+            key={card._id}
           />
         ))}
       </section>

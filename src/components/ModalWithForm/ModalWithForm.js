@@ -1,5 +1,6 @@
 import "./ModalWithForm.css";
-import { useEffect } from "react";
+import useEscape from "../../hooks/useEscape";
+import Modal from "../Modal/Modal";
 
 function ModalWithForm({
   title,
@@ -15,29 +16,18 @@ function ModalWithForm({
   };
 
   // Attach / remove handler to close modal on `Esc` press:
-  useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  });
+  useEscape(onClose);
 
   return (
-    <div className={`form-modal modal_type_${name}`} onClick={onClose}>
-      <div className="form-modal__content" onClick={(e) => e.stopPropagation()}>
-        <button
-          type="button"
-          className="form-modal__close-button"
-          onClick={onClose}
-        />
+    <Modal name={name} onClose={onClose}>
+      <div className="form-modal__container">
         <h2 className="form-modal__title">{title}</h2>
         <form className="form-modal__form" name={name} onSubmit={handleSubmit}>
           {children}
           <button className="form-modal__submit-button">{buttonText}</button>
         </form>
       </div>
-    </div>
+    </Modal>
   );
 }
 

@@ -12,7 +12,7 @@ function Profile({onCardClick, onAddItemClick, items}) {
         className="profile__clothes-section"
         items={items}
         onCardClick={onCardClick}
-        onAddItemClick={() => onAddItemClick()}
+        onAddItemClick={onAddItemClick}
       />
     </section>
   );

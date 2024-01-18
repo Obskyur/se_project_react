@@ -1,15 +1,9 @@
-import { useEffect } from "react";
+import useEscape from "../../hooks/useEscape.js";
 import "./DeleteConfirmationModal.css";
 
 export default function DeleteConfirmationModal({onClose, onConfirm}) {
 
-  useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  });
+  useEscape(onClose);
 
   return (
     <div

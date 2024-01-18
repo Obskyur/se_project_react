@@ -18,8 +18,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [clothingItems, setClothingItems] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
-
-  
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getWeather()
@@ -56,28 +55,33 @@ function App() {
   }
 
   const handleAddItemSubmit = (card) => {
-    console.log(card);
+    setIsLoading(true);
     addItem({
       name: card.name,
       weather: card.weather,
       imageUrl: card.imageUrl,
     })
-      .then(card => setClothingItems([card, ...clothingItems]))
-      .catch(console.error);
-    handleCloseModal();
+      .then((card) => {
+        setClothingItems([card, ...clothingItems]);
+        handleCloseModal();
+      })
+      .catch(console.error)
+      .finally(setIsLoading(false));
   };
 
   const handleCardDelete = () => {
+    setIsLoading(true);
     deleteItem(selectedCard._id)
-      .then(
+      .then(() => {
         setClothingItems(
           clothingItems.filter((card) => {
             return card._id !== selectedCard._id;
           })
-        )
-      )
-      .catch(console.error);
-    handleCloseModal();
+        );
+        handleCloseModal();
+      })
+      .catch(console.error)
+      .finally(setIsLoading(false));
   };
 
   const handleCloseModal = () => {
@@ -126,7 +130,7 @@ function App() {
         <AddItemModal
           title="New Garment"
           name="new-garment"
-          buttonText="Add garment"
+          buttonText={isLoading ? "Saving..." : "Add Garment"}
           onClose={handleCloseModal}
           onSubmit={handleAddItemSubmit}
         />
