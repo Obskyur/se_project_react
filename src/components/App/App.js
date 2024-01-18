@@ -66,10 +66,11 @@ function App() {
         handleCloseModal();
       })
       .catch(console.error)
-      .finally(setIsLoading(false));
+      .finally(setIsLoading);
   };
 
-  const handleCardDelete = () => {
+  const handleCardDelete = (e) => {
+    e.preventDefault();
     setIsLoading(true);
     deleteItem(selectedCard._id)
       .then(() => {
@@ -81,7 +82,7 @@ function App() {
         handleCloseModal();
       })
       .catch(console.error)
-      .finally(setIsLoading(false));
+      .finally(setIsLoading);
   };
 
   const handleCloseModal = () => {
@@ -149,6 +150,7 @@ function App() {
       )}
       {activeModal === "confirm-delete" && (
         <DeleteConfirmationModal
+          buttonText={isLoading ? "Deleting..." : "Yes, delete item"}
           onClose={handleCloseModal}
           onConfirm={handleCardDelete}
         />

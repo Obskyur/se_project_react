@@ -1,5 +1,4 @@
 import "./ModalWithForm.css";
-import useEscape from "../../hooks/useEscape";
 import Modal from "../Modal/Modal";
 
 function ModalWithForm({
@@ -14,9 +13,6 @@ function ModalWithForm({
     e.preventDefault();
     onSubmit();
   };
-
-  // Attach / remove handler to close modal on `Esc` press:
-  useEscape(onClose);
 
   return (
     <Modal name={name} onClose={onClose}>

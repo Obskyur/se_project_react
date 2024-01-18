@@ -1,11 +1,7 @@
-import useEscape from "../../hooks/useEscape";
 import Modal from "../Modal/Modal";
 import "./ItemModal.css";
 
 function ItemModal({ card, onClose, onDelete }) {
-  // Attach / remove handler to close modal on `Esc` press:
-  useEscape(onClose);
-
   return (
     <Modal name="preview" onClose={onClose}>
       <img
