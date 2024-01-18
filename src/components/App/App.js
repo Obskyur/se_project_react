@@ -7,7 +7,6 @@ import Footer from "../Footer/Footer.js";
 import Header from "../Header/Header.js";
 import ItemModal from "../ItemModal/ItemModal.js";
 import Main from "../Main/Main.js";
-import ModalWithForm from "../ModalWithForm/ModalWithForm.js";
 import AddItemModal from "../AddItemModal/AddItemModal.js";
 import Profile from "../Profile/Profile.js";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.js";
@@ -20,11 +19,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
 
-  // Keep track of form field values to use during onSubmit()
-  const [values, setValues] = useState({});
-  const handleFormFieldChange = (field, value) => {
-    setValues({ ...values, [field]: value });
-  };
+  
 
   useEffect(() => {
     getWeather()
@@ -60,20 +55,14 @@ function App() {
     else return apiWeatherMain;
   }
 
-  const handleAddItemSubmit = () => {
-    const card = {
-      _id: Math.round(Math.random() * 1000000000000),
-      name: values.name,
-      weather: values.weather,
-      imageUrl: values.link,
-    };
-
+  const handleAddItemSubmit = (card) => {
+    console.log(card);
     addItem({
       name: card.name,
       weather: card.weather,
       imageUrl: card.imageUrl,
     })
-      .then(setClothingItems([card, ...clothingItems]))
+      .then(card => setClothingItems([card, ...clothingItems]))
       .catch(console.error);
     handleCloseModal();
   };
@@ -134,15 +123,13 @@ function App() {
         </Route>
       </CurrentTempUnitContext.Provider>
       {activeModal === "create" && (
-        <ModalWithForm
+        <AddItemModal
           title="New Garment"
           name="new-garment"
           buttonText="Add garment"
           onClose={handleCloseModal}
           onSubmit={handleAddItemSubmit}
-        >
-          <AddItemModal onChange={handleFormFieldChange} />
-        </ModalWithForm>
+        />
       )}
       {activeModal === "preview" && (
         <ItemModal
