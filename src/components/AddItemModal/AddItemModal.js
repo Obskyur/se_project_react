@@ -9,7 +9,7 @@ function AddItemModal({ title, name, buttonText, onClose, onSubmit }) {
     onSubmit({
       name: values.name,
       weather: values.weather,
-      imageUrl: values.link,
+      imageUrl: values.imageUrl,
     });
   };
 
@@ -21,9 +21,10 @@ function AddItemModal({ title, name, buttonText, onClose, onSubmit }) {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label>Name</label>
+      <label htmlFor="name">Name</label>
       <input
         type="text"
+        id="name"
         name="name"
         value={values.name || ""}
         onChange={handleFormFieldChange}
@@ -31,10 +32,11 @@ function AddItemModal({ title, name, buttonText, onClose, onSubmit }) {
         maxLength="30"
         placeholder="Name"
       />
-      <label>Image</label>
+      <label htmlFor="imageUrl">Image</label>
       <input
         type="url"
-        name="link"
+        id="imageUrl"
+        name="imageUrl"
         value={values.imageUrl || ""}
         onChange={handleFormFieldChange}
         minLength="10"
