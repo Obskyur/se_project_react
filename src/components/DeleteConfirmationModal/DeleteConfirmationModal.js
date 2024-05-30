@@ -28,6 +28,7 @@ export default function DeleteConfirmationModal({ buttonText, onClose, onConfirm
         >
           Cancel
         </button>
+        <button className="form-modal__submit-button">{buttonText}</button>
       </form>
     </Modal>
   );

@@ -1,0 +1,38 @@
+.login-modal__submit-button {
+  margin-top: 28px;
+  padding: 8px 16px;
+  width: max-content;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  font-family: 'Cabinet Grotesk';
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-modal__submit-button:disabled {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: not-allowed;
+}
+
+.login-modal__submit-button:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0.5;
+}
+
+.login-modal__register-button {
+  width: 89px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  margin-left: 70px;
+  margin-top: -26px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.login-modal__register-button:hover {
+  text-decoration: underline;
+  opacity: 1;
+}

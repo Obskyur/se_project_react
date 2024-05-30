@@ -81,6 +81,7 @@ function AddItemModal({ title, name, buttonText, onClose, onSubmit }) {
           </label>
         </div>
       </div>
+      <button className="form-modal__submit-button">{buttonText}</button>
     </ModalWithForm>
   );
 }

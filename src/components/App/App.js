@@ -8,14 +8,16 @@ import Header from "../Header/Header.js";
 import ItemModal from "../ItemModal/ItemModal.js";
 import Main from "../Main/Main.js";
 import AddItemModal from "../AddItemModal/AddItemModal.js";
+import RegisterModal from "../RegisterModal/RegisterModal.js";
 import Profile from "../Profile/Profile.js";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.js";
 import { getItems, addItem, deleteItem } from "../../utils/api.js";
+import LoginModal from "../LoginModal/LoginModal.js";
 
 function App() {
   const [weather, setWeather] = useState({});
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
-  const [activeModal, setActiveModal] = useState("");
+  const [activeModal, setActiveModal] = useState("login");
   const [clothingItems, setClothingItems] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -67,6 +69,17 @@ function App() {
       })
       .catch(console.error)
       .finally(setIsLoading);
+  };
+
+  const handleRegisterSubmit = () => {
+  };
+
+  const handleLoginClick = () => {
+    setActiveModal("login");
+  };
+
+  const handleRegisterClick = () => {
+    setActiveModal("register");
   };
 
   const handleCardDelete = (e) => {
@@ -153,6 +166,20 @@ function App() {
           buttonText={isLoading ? "Deleting..." : "Yes, delete item"}
           onClose={handleCloseModal}
           onConfirm={handleCardDelete}
+        />
+      )}
+      {activeModal === "register" && (
+        <RegisterModal
+          onClose={handleCloseModal}
+          onSubmit={handleRegisterSubmit}
+          onLoginClick={handleLoginClick}
+        />
+      )}
+      {activeModal === "login" && (
+        <LoginModal
+          onClose={handleCloseModal}
+          onSubmit={handleRegisterSubmit}
+          onRegisterClick={handleRegisterClick}
         />
       )}
       <Footer />
