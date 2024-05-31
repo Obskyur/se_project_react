@@ -21,7 +21,7 @@ function LoginModal({ onClose, onSubmit, onRegisterClick }) {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="email">Email*</label>
+      <label htmlFor="email">Email</label>
       <input
         type="email"
         id="email"
