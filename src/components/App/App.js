@@ -8,7 +8,7 @@ import Footer from "../Footer/Footer.js";
 import Header from "../Header/Header.js";
 import ItemModal from "../ItemModal/ItemModal.js";
 import Main from "../Main/Main.js";
-import addItemModal from "../AddItemModal/AddItemModal.js";
+import AddItemModal from "../AddItemModal/AddItemModal.js";
 import RegisterModal from "../RegisterModal/RegisterModal.js";
 import Profile from "../Profile/Profile.js";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.js";
@@ -29,7 +29,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({name: "Default User", avatarUrl: "https://www.svgrepo.com/show/382100/female-avatar-girl-face-woman-user-7.svg"});
   const token = localStorage.getItem("jwt");
 
@@ -199,7 +199,7 @@ function App() {
         </Route>
       </CurrentTempUnitContext.Provider>
       {activeModal === "create" && (
-        <addItemModal
+        <AddItemModal
           title="New Garment"
           name="new-garment"
           buttonText={isLoading ? "Saving..." : "Add Garment"}
