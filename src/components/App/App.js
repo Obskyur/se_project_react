@@ -29,8 +29,8 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [currentUser, setCurrentUser] = useState({name: "Default User", avatarUrl: "https://www.svgrepo.com/show/382100/female-avatar-girl-face-woman-user-7.svg"});
   const token = localStorage.getItem("jwt");
 
   useEffect(() => {
@@ -174,7 +174,13 @@ function App() {
       <CurrentTempUnitContext.Provider
         value={{ currentTempUnit, handleTempUnitToggle }}
       >
-        <Header onCreateModal={handleCreateModal} weather={weather} />
+          <Header
+            onCreateModal={handleCreateModal}
+            weather={weather}
+            onRegisterClick={handleRegisterClick}
+            onLoginClick={handleLoginClick}
+            isLoggedIn={isLoggedIn}
+          />
         <Route exact path="/">
           <Main
             items={clothingItems}
