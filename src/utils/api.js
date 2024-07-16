@@ -9,20 +9,6 @@ export function handleResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
 
-export function getClothingItems() {
-  return request(`${baseUrl}/items`);
-}
-
-export function getUserInfo(token) {
-  return request(`${baseUrl}/users/me`, {
-    method: "GET",
-    headers: {
-      ...baseHeaders,
-      Authorization: `Bearer ${token}`,
-    },
-  });
-}
-
 export function addClothingItem({ name, weather, imageUrl }, token) {
   return request(`${baseUrl}/items`, {
     method: "POST",
@@ -45,6 +31,20 @@ export function deleteItem(itemId, token) {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export function getClothingItems() {
+  return request(`${baseUrl}/items`);
+}
+
+export function getUserInfo(token) {
+  return request(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      ...baseHeaders,
       Authorization: `Bearer ${token}`,
     },
   });

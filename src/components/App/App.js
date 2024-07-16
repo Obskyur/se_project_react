@@ -2,6 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 import { CurrentTempUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 import getWeather from "../../utils/weatherApi.js";
 import Footer from "../Footer/Footer.js";
 import Header from "../Header/Header.js";
@@ -24,13 +25,13 @@ import { signin, signup } from "../../utils/auth.js";
 function App() {
   const [weather, setWeather] = useState({});
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
-  const [activeModal, setActiveModal] = useState("register");
+  const [activeModal, setActiveModal] = useState("");
   const [clothingItems, setClothingItems] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const jwt = localStorage.getItem("jwt");
+  const token = localStorage.getItem("jwt");
 
   useEffect(() => {
     getWeather()
@@ -60,15 +61,15 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (jwt) {
-      getUserInfo(jwt)
+    if (token) {
+      getUserInfo(token)
         .then((user) => {
           setCurrentUser(user);
           setIsLoggedIn(true);
         })
         .catch(console.error);
     }
-  }, [jwt]);
+  }, [token]);
 
   function getWeatherCondition(apiWeatherMain) {
     if (apiWeatherMain === "Drizzle") return "Rain";
@@ -77,13 +78,13 @@ function App() {
     else return apiWeatherMain;
   }
 
-  const handleaddClothingItemSubmit = (card) => {
+  const handleAddClothingItemSubmit = (card) => {
     setIsLoading(true);
     addClothingItem({
       name: card.name,
       weather: card.weather,
       imageUrl: card.imageUrl,
-    })
+    }, token)
       .then((card) => {
         setClothingItems([card, ...clothingItems]);
         handleCloseModal();
@@ -133,7 +134,7 @@ function App() {
   const handleCardDelete = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    deleteItem(selectedCard._id)
+    deleteItem(selectedCard._id, token)
       .then(() => {
         setClothingItems(
           clothingItems.filter((card) => {
@@ -168,6 +169,7 @@ function App() {
   };
 
   return (
+    <CurrentUserContext.Provider value={currentUser}>
     <div className="page">
       <CurrentTempUnitContext.Provider
         value={{ currentTempUnit, handleTempUnitToggle }}
@@ -185,18 +187,18 @@ function App() {
             <Profile
               items={clothingItems}
               onCardClick={handlePreviewModal}
-              onaddClothingItemClick={handleCreateModal}
+              onAddItemClick={handleCreateModal}
             />
           </ProtectedRoute>
         </Route>
       </CurrentTempUnitContext.Provider>
       {activeModal === "create" && (
-        <addClothingItemModal
+        <addItemModal
           title="New Garment"
           name="new-garment"
           buttonText={isLoading ? "Saving..." : "Add Garment"}
           onClose={handleCloseModal}
-          onSubmit={handleaddClothingItemSubmit}
+          onSubmit={handleAddClothingItemSubmit}
         />
       )}
       {activeModal === "preview" && (
@@ -233,7 +235,8 @@ function App() {
         />
       )}
       <Footer />
-    </div>
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 
