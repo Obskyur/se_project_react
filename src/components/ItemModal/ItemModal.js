@@ -1,7 +1,12 @@
 import Modal from "../Modal/Modal";
 import "./ItemModal.css";
+import { useContext, useState } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function ItemModal({ card, onClose, onDelete }) {
+  const currentUser = useContext(CurrentUserContext);
+  const [isCurrentUser, setIsCurrentUser] = useState(card.owner === currentUser._id);
+
   return (
     <Modal name="preview" onClose={onClose}>
       <img
@@ -12,7 +17,10 @@ function ItemModal({ card, onClose, onDelete }) {
       <div className="preview-modal__title-section">
         <h2 className="preview-modal__title">{card.name}</h2>
         <button
-          className="preview-modal__delete-button"
+          className={isCurrentUser
+            ? "preview-modal__delete-button"
+            : "preview-modal__delete-button_hidden"
+          }
           type="button"
           onClick={onDelete}
         >
