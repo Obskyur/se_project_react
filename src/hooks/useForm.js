@@ -13,7 +13,5 @@ export default function useForm(inputValues) {
     setIsValid(e.target.closest("form").checkValidity());
   };
 
-  console.log(values, errors);
-
   return { values, handleFormFieldChange, isValid, errors };
 }
