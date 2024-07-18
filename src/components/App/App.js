@@ -13,10 +13,12 @@ import RegisterModal from "../RegisterModal/RegisterModal.js";
 import Profile from "../Profile/Profile.js";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.js";
 import {
-  getClothingItems,
+  addCardLike,
   addClothingItem,
+  getClothingItems,
   deleteItem,
   getUserInfo,
+  removeCardLike,
 } from "../../utils/api.js";
 import LoginModal from "../LoginModal/LoginModal.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
@@ -93,8 +95,9 @@ function App() {
       .finally(setIsLoading);
   };
 
-  const handleRegisterSubmit = (name, password, email, avatarUrl) => {
-    signup(name, password, email, avatarUrl)
+  const handleRegisterSubmit = ({ name, password, email, avatarUrl }) => {
+    debugger;
+    signup({name, password, email, avatarUrl})
       .then((user) => {
         setCurrentUser(user);
         handleLoginSubmit(email, password);
