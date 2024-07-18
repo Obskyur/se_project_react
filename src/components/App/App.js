@@ -29,7 +29,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({name: "Default User", avatarUrl: "https://www.svgrepo.com/show/382100/female-avatar-girl-face-woman-user-7.svg"});
   const token = localStorage.getItem("jwt");
 
