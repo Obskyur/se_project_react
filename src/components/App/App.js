@@ -158,6 +158,33 @@ function App() {
     setActiveModal("create");
   };
 
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+
+    if (!isLiked) {
+      addCardLike(id, token)
+        .then((newCard) => {
+          setClothingItems(
+            clothingItems.map((card) => {
+              return card._id === newCard._id ? newCard : card;
+            })
+          );
+        })
+        .catch(console.error);
+    }
+    else {
+      removeCardLike(id, token)
+        .then((newCard) => {
+          setClothingItems(
+            clothingItems.map((card) => {
+              return card._id === newCard._id ? newCard : card;
+            })
+          );
+        })
+        .catch(console.error);
+    }
+  }
+
   const openConfirmationModal = () => {
     setActiveModal("confirm-delete");
   };
@@ -188,6 +215,7 @@ function App() {
           <Main
             items={clothingItems}
             onCardClick={handlePreviewModal}
+            onLikeClick={handleCardLike}
             weather={weather}
           />
         </Route>

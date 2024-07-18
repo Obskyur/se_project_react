@@ -10,6 +10,9 @@
 }
 
 .card__title {
+  display: flex;
+  justify-content: center;
+  align-content: center;
   position: absolute;
   margin: 15px auto 0;
   padding: 2px 12px;
@@ -18,6 +21,19 @@
   color: rgba(0, 0, 0, 0.6);
   background-color: white;
   border-radius: 4px;
+}
+
+.card__like-button {
+  justify-self: center;
+  border: none;
+  margin-left: 10px;
+  padding: 0;
+  position: static;
+  background: none;
+}
+
+.card__like-button_hidden {
+  display: none;
 }
 
 .card__image {

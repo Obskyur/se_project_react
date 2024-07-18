@@ -13,7 +13,7 @@ export function handleResponse(res) {
 }
 
 export function addCardLike(cardId, token) {
-  return request(`${baseUrl}/cards/${cardId}/likes`, {
+  return request(`${baseUrl}/items/${cardId}/likes`, {
     method: "PUT",
     headers: {
       ...baseHeaders,
@@ -62,7 +62,7 @@ export function getUserInfo(token) {
 }
 
 export function removeCardLike(cardId, token) {
-  return request(`${baseUrl}/cards/${cardId}/likes`, {
+  return request(`${baseUrl}/items/${cardId}/likes`, {
     method: "DELETE",
     headers: {
       ...baseHeaders,

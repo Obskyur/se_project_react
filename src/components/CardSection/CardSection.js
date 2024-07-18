@@ -3,7 +3,7 @@ import ItemCard from "../ItemCard/ItemCard";
 import { useContext } from "react";
 import { CurrentTempUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
-function CardSection({ weather, onCardClick, items }) {
+function CardSection({ weather, onCardClick, onLikeClick, items }) {
   const { currentTempUnit } = useContext(CurrentTempUnitContext);
   const getWeatherType = () => {
     return weather.temp?.F > 70
@@ -31,8 +31,8 @@ function CardSection({ weather, onCardClick, items }) {
         {filteredCards.map((card) => (
           <ItemCard
             onCardClick={onCardClick}
+            onLikeClick={onLikeClick}
             card={card}
-            key={card._id}
           />
         ))}
       </section>
