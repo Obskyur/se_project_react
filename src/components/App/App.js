@@ -224,6 +224,7 @@ function App() {
             <Profile
               items={clothingItems}
               onCardClick={handlePreviewModal}
+              onLikeClick={handleCardLike}
               onAddItemClick={handleCreateModal}
             />
           </ProtectedRoute>
@@ -242,6 +243,7 @@ function App() {
         <ItemModal
           card={{
             _id: selectedCard._id,
+            owner: selectedCard.owner,
             name: selectedCard.name,
             weather: selectedCard.weather,
             imageUrl: selectedCard.imageUrl,

@@ -5,7 +5,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function ItemModal({ card, onClose, onDelete }) {
   const currentUser = useContext(CurrentUserContext);
-  const [isCurrentUser, setIsCurrentUser] = useState(card.owner === currentUser._id);
+  const [isCurrentUser, setIsCurrentUser] = useState(card.owner === currentUser?._id);
 
   return (
     <Modal name="preview" onClose={onClose}>

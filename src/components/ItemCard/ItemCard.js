@@ -11,7 +11,6 @@ function ItemCard({ card, onCardClick, onLikeClick }) {
   const handleLikeClick = (e) => {
     e.stopPropagation();
     onLikeClick({ id: card._id, isLiked });
-    console.log(card._id, isLiked);
   };
 
   return (
