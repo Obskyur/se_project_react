@@ -18,9 +18,11 @@ function ClothesSection({ items, onCardClick, onLikeClick, onAddItemClick }) {
         </button>
       </h2>
       <section className="clothes-section">
-        {items.map((card) => (
-          <ItemCard onCardClick={onCardClick} onLikeClick={onLikeClick} card={card} key={card._id} />
-        ))}
+        {items.map((card) => {
+          if (card.owner === currentUser._id) {
+            return <ItemCard onCardClick={onCardClick} onLikeClick={onLikeClick} card={card} key={card._id} />;
+          }
+        })}
       </section>
     </div>
   );
