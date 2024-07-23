@@ -23,8 +23,11 @@ function ItemCard({ card, onCardClick, onLikeClick }) {
     <div className="card" onClick={() => onCardClick(card)}>
       <h2 className="card__title">
         {card.name}
-        {currentUser && (
-          <button className="card__like-button" onClick={handleLikeClick}>
+        {currentUser?._id && ( // if the user is logged in, show the like button
+          <button
+            className="card__like-button"
+            onClick={handleLikeClick}
+          >
             <img
               src={isLiked ? likedButton : notLikedButton}
               alt={isLiked ? "Liked" : "Not Liked"}

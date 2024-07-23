@@ -14,7 +14,6 @@ const EditProfileModal = ({ onClose, onSubmit }) => {
   }, [currentUser]);
 
   const handleSubmit = () => {
-    console.log(values);
     onSubmit({
       name: values.name,
       avatarUrl: values.avatarUrl,
