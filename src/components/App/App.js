@@ -86,61 +86,64 @@ function App() {
     else return apiWeatherMain;
   }
 
-  const handleAddClothingItemSubmit = (card) => {
+  function handleSubmit(request) {
     setIsLoading(true);
-    addClothingItem(
-      {
-        name: card.name,
-        weather: card.weather,
-        imageUrl: card.imageUrl,
-      },
-      token
-    )
-      .then((card) => {
+    request().then(handleCloseModal).catch(console.error).finally(setIsLoading);
+  }
+
+  const handleAddClothingItemSubmit = (card) => {
+    const addItemRequest = () => {
+      addClothingItem(
+        {
+          name: card.name,
+          weather: card.weather,
+          imageUrl: card.imageUrl,
+        },
+        token
+      ).then((card) => {
         setClothingItems([card, ...clothingItems]);
-        handleCloseModal();
-      })
-      .catch(console.error)
-      .finally(setIsLoading);
+      });
+    };
+    handleSubmit(addItemRequest);
   };
 
   const handleRegisterSubmit = ({ name, password, email, avatarUrl }) => {
-    signup({ name, password, email, avatarUrl })
-      .then((user) => {
+    const registerRequest = () => {
+      signup({ name, password, email, avatarUrl }).then((user) => {
         setCurrentUser(user);
         handleLoginSubmit(email, password);
-        handleCloseModal();
-      })
-      .catch(console.error)
-      .finally(() => {
         setIsLoggedIn(true);
       });
+    };
+    handleSubmit(registerRequest);
   };
 
-  const handleLoginSubmit = ({email, password}) => {
+  const handleLoginSubmit = ({ email, password }) => {
     if (!email || !password) return;
-    signin(email, password).then((res) => {
-      if (res.token) {
-        localStorage.setItem("jwt", res.token);
-      }
-      handleCloseModal();
-    });
+    const signinRequest = () => {
+      signin(email, password)
+        .then((res) => {
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+        }
+      });
+    };
+    handleSubmit(signinRequest);
   };
 
   const handleCardDelete = (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    deleteItem(selectedCard._id, token)
-      .then(() => {
-        setClothingItems(
-          clothingItems.filter((card) => {
-            return card._id !== selectedCard._id;
-          })
-        );
-        handleCloseModal();
-      })
-      .catch(console.error)
-      .finally(setIsLoading);
+    const deleteItemRequest = () => {
+      deleteItem(selectedCard._id, token)
+        .then(() => {
+          setClothingItems(
+            clothingItems.filter((card) => {
+              return card._id !== selectedCard._id;
+            })
+          );
+        })
+    };
+    handleSubmit(deleteItemRequest);
   };
 
   const handleCardLike = ({ id, isLiked }) => {
@@ -170,14 +173,13 @@ function App() {
   };
 
   const handleEditProfileSubmit = ({ name, avatarUrl }) => {
-    setIsLoading(true);
-    editProfile({ name, avatarUrl }, token)
-      .then((user) => {
-        setCurrentUser(user);
-        handleCloseModal();
-      })
-      .catch(console.error)
-      .finally(setIsLoading);
+    const editProfileRequest = () => {
+      editProfile({ name, avatarUrl }, token)
+        .then((user) => {
+          setCurrentUser(user);
+        })
+    };
+    handleSubmit(editProfileRequest);
   };
 
   const handleTempUnitToggle = () => {
