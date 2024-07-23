@@ -47,6 +47,22 @@ export function deleteItem(itemId, token) {
   });
 }
 
+export function editProfile({ name, avatarUrl }) {
+  console.log(name, avatarUrl);
+  const token = localStorage.getItem("jwt");
+  return request(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      ...baseHeaders,
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name: name,
+      avatarUrl: avatarUrl,
+    }),
+  });
+}
+
 export function getClothingItems() {
   return request(`${baseUrl}/items`);
 }

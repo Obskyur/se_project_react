@@ -17,12 +17,14 @@ import {
   addClothingItem,
   getClothingItems,
   deleteItem,
+  editProfile,
   getUserInfo,
   removeCardLike,
 } from "../../utils/api.js";
 import LoginModal from "../LoginModal/LoginModal.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 import { signin, signup } from "../../utils/auth.js";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.js";
 
 function App() {
   const [weather, setWeather] = useState({});
@@ -167,6 +169,17 @@ function App() {
     }
   };
 
+  const handleEditProfileSubmit = ({ name, avatarUrl }) => {
+    setIsLoading(true);
+    editProfile({ name, avatarUrl }, token)
+      .then((user) => {
+        setCurrentUser(user);
+        handleCloseModal();
+      })
+      .catch(console.error)
+      .finally(setIsLoading);
+  };
+
   const handleTempUnitToggle = () => {
     setCurrentTempUnit(currentTempUnit === "F" ? "C" : "F");
   };
@@ -280,6 +293,12 @@ function App() {
             onClose={handleCloseModal}
             onSubmit={handleLoginSubmit}
             onRegisterClick={handleRegisterClick}
+          />
+        )}
+        {activeModal === "profileEdit" && (
+          <EditProfileModal
+            onClose={handleCloseModal}
+            onSubmit={handleEditProfileSubmit}
           />
         )}
         <Footer />
