@@ -1,9 +1,7 @@
-import useEscape from "../../hooks/useEscape.js";
 import Modal from "../Modal/Modal.js";
 import "./DeleteConfirmationModal.css";
 
 export default function DeleteConfirmationModal({ buttonText, onClose, onConfirm }) {
-  useEscape(onClose);
 
   return (
     <Modal name="delete" onClose={onClose}>

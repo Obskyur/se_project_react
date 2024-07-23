@@ -6,12 +6,7 @@ function RegisterModal({ onClose, onSubmit, onLoginClick }) {
   const { values, handleFormFieldChange, isValid, errors } = useForm({});
 
   const handleSubmit = () => {
-    onSubmit({
-      email: values.email,
-      password: values.password,
-      name: values.name,
-      avatarUrl: values.avatarUrl,
-    });
+    onSubmit(values);
   };
 
   return (

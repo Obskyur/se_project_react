@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // Used to track input values of a form
-export default function useForm(inputValues) {
+export default function useForm() {
   const [values, setValues] = useState({});
   const [isValid, setIsValid] = useState(false);
   const [errors, setErrors] = useState({});
