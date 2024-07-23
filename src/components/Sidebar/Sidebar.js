@@ -2,7 +2,7 @@ import "./Sidebar.css";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Sidebar(onChangeProfileClick, onLogOutClick) {
+function Sidebar({onChangeProfileClick, onLogOutClick}) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -15,10 +15,10 @@ function Sidebar(onChangeProfileClick, onLogOutClick) {
         />
         <div className="sidebar__user-name">{currentUser.name}</div>
       </div>
-      <button className="sidebar__change-profile-button" onClick={() => onChangeProfileClick()}>
+      <button className="sidebar__change-profile-button" onClick={onChangeProfileClick}>
         Change profile data
       </button>
-      <button className="sidebar__logout-button" onClick={() => onLogOutClick()}>
+      <button className="sidebar__logout-button" onClick={onLogOutClick}>
         Log out
       </button>
     </section>

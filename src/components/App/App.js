@@ -103,7 +103,6 @@ function App() {
   };
 
   const handleRegisterSubmit = ({ name, password, email, avatarUrl }) => {
-    debugger;
     signup({ name, password, email, avatarUrl })
       .then((user) => {
         setCurrentUser(user);
@@ -116,18 +115,12 @@ function App() {
       });
   };
 
-  const handleLoginSubmit = (email, password) => {
+  const handleLoginSubmit = ({email, password}) => {
+    debugger;
     if (!email || !password) return;
     signin(email, password).then((res) => {
       if (res.token) {
         localStorage.setItem("jwt", res.token);
-        // useEffect() should handle this:
-        /* getUserInfo(res.token)
-            .then((user) => {
-              setCurrentUser(user);
-              setIsLoggedIn(true);
-            })
-            .catch(console.error); */
       }
       handleCloseModal();
     });
@@ -286,7 +279,7 @@ function App() {
         {activeModal === "login" && (
           <LoginModal
             onClose={handleCloseModal}
-            onSubmit={handleRegisterSubmit}
+            onSubmit={handleLoginSubmit}
             onRegisterClick={handleRegisterClick}
           />
         )}
