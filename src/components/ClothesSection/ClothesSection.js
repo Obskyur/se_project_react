@@ -1,22 +1,28 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function ClothesSection({ items, onCardClick, onaddClothingItemClick }) {
+function ClothesSection({ items, onCardClick, onLikeClick, onAddItemClick }) {
+  const currentUser = useContext(CurrentUserContext);
+  
   return (
     <div className="clothes-section__container">
       <h2 className="clothes-section__title">
         Your Items
         <button
           className="clothes-section__add-button"
-          onClick={() => onaddClothingItemClick()}
+          onClick={() => onAddItemClick()}
         >
           + Add New
         </button>
       </h2>
       <section className="clothes-section">
-        {items.map((card) => (
-          <ItemCard onCardClick={onCardClick} card={card} key={card._id} />
-        ))}
+        {items.map((card) => {
+          if (card.owner === currentUser._id) {
+            return <ItemCard onCardClick={onCardClick} onLikeClick={onLikeClick} card={card} key={card._id} />;
+          }
+        })}
       </section>
     </div>
   );

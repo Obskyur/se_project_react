@@ -9,8 +9,6 @@ function LoginModal({ onClose, onSubmit, onRegisterClick }) {
     onSubmit({
       email: values.email,
       password: values.password,
-      name: values.name,
-      avatarUrl: values.avatarUrl,
     });
   };
 

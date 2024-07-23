@@ -26,6 +26,10 @@
   color: #FF4D00;
 }
 
+.preview-modal__delete-button_hidden {
+  display: none;
+}
+
 .preview-modal__delete-button:hover {
   cursor: pointer;
 }

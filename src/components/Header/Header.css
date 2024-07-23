@@ -20,6 +20,35 @@ header {
   margin-right: auto;
 }
 
+.header__auth-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.header__signup-button {
+  padding: 0;
+  margin: 0 20px;
+  text-decoration: none;
+  border: none;
+  background: none;
+  font-weight: 700;
+  font-style: bold;
+  color: #000;
+  cursor: pointer;
+}
+
+.header__signin-button {
+  padding: 0;
+  margin-right: 6px;
+  text-decoration: none;
+  border: none;
+  background: none;
+  font-weight: 700;
+  font-size: 20px;
+  color: #000;
+  cursor: pointer;
+}
+
 .header__add-clothes-button {
   margin: 0 20px;
   padding: 0;

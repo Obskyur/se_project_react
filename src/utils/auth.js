@@ -1,11 +1,11 @@
-export const BASE_URL = "http://localhost:3000";
+export const BASE_URL = "http://localhost:3001";
 
 const headers = {
   Accept: "application/json",
   "Content-Type": "application/json",
 };
 
-function signup(name, password, email, avatarUrl) {
+function signup({name, password, email, avatarUrl}) {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers,
