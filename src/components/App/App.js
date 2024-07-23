@@ -116,7 +116,6 @@ function App() {
   };
 
   const handleLoginSubmit = ({email, password}) => {
-    debugger;
     if (!email || !password) return;
     signin(email, password).then((res) => {
       if (res.token) {
