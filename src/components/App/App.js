@@ -93,7 +93,7 @@ function App() {
 
   const handleAddClothingItemSubmit = (card) => {
     const addItemRequest = () => {
-      addClothingItem(
+      return addClothingItem(
         {
           name: card.name,
           weather: card.weather,
@@ -109,7 +109,7 @@ function App() {
 
   const handleRegisterSubmit = ({ name, password, email, avatarUrl }) => {
     const registerRequest = () => {
-      signup({ name, password, email, avatarUrl }).then((user) => {
+      return signup({ name, password, email, avatarUrl }).then((user) => {
         setCurrentUser(user);
         handleLoginSubmit(email, password);
         setIsLoggedIn(true);
@@ -121,7 +121,7 @@ function App() {
   const handleLoginSubmit = ({ email, password }) => {
     if (!email || !password) return;
     const signinRequest = () => {
-      signin(email, password)
+      return signin(email, password)
         .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
@@ -134,7 +134,7 @@ function App() {
   const handleCardDelete = (e) => {
     e.preventDefault();
     const deleteItemRequest = () => {
-      deleteItem(selectedCard._id, token)
+      return deleteItem(selectedCard._id, token)
         .then(() => {
           setClothingItems(
             clothingItems.filter((card) => {
@@ -174,7 +174,7 @@ function App() {
 
   const handleEditProfileSubmit = ({ name, avatarUrl }) => {
     const editProfileRequest = () => {
-      editProfile({ name, avatarUrl }, token)
+      return editProfile({ name, avatarUrl }, token)
         .then((user) => {
           setCurrentUser(user);
         })
