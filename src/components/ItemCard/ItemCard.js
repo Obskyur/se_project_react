@@ -1,12 +1,18 @@
 import "./ItemCard.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import likedButton from "../../images/like__button_liked.svg";
 import notLikedButton from "../../images/like__button_unliked.svg";
 
 function ItemCard({ card, onCardClick, onLikeClick }) {
   const currentUser = useContext(CurrentUserContext);
-  const isLiked = card?.likes?.includes(currentUser._id) || false;
+  var isLiked = card?.likes?.includes(currentUser._id) || false;
+
+  useEffect(() => {
+    if (currentUser) {
+      isLiked = card?.likes?.includes(currentUser._id) || false;
+    }
+  }, [currentUser]);
 
   const handleLikeClick = (e) => {
     e.stopPropagation();

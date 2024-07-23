@@ -215,6 +215,10 @@ function App() {
 
   const handleLogOutClick = () => {
     localStorage.removeItem("jwt");
+    setCurrentUser({
+      name: "",
+      avatarUrl: "",
+    })
     setIsLoggedIn(false);
   };
 
