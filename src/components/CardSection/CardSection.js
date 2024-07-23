@@ -33,6 +33,7 @@ function CardSection({ weather, onCardClick, onLikeClick, items }) {
             onCardClick={onCardClick}
             onLikeClick={onLikeClick}
             card={card}
+            key={card._id}
           />
         ))}
       </section>
