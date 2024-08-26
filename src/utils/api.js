@@ -1,6 +1,9 @@
+console.log('NODE_ENV:', process.env.NODE_ENV);
 const baseUrl = process.env.NODE_ENV === "production"
   ? "https://api.wtwr.projectdev.net"
   : "http://localhost:3001";
+  
+console.log('baseUrl:', baseUrl);
 const baseHeaders = { 
   Accept: "application/json",
   "Content-Type": "application/json"
