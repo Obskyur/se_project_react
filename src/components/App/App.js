@@ -36,7 +36,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     name: "Default User",
-    avatarUrl:
+    avatar:
       "https://www.svgrepo.com/show/382100/female-avatar-girl-face-woman-user-7.svg",
   });
   const token = localStorage.getItem("jwt");
@@ -107,9 +107,9 @@ function App() {
     handleSubmit(addItemRequest);
   };
 
-  const handleRegisterSubmit = ({ name, password, email, avatarUrl }) => {
+  const handleRegisterSubmit = ({ name, password, email, avatar }) => {
     const registerRequest = () => {
-      return signup({ name, password, email, avatarUrl }).then((user) => {
+      return signup({ name, password, email, avatar }).then((user) => {
         setCurrentUser(user);
         handleLoginSubmit(email, password);
         setIsLoggedIn(true);
@@ -172,9 +172,9 @@ function App() {
     }
   };
 
-  const handleEditProfileSubmit = ({ name, avatarUrl }) => {
+  const handleEditProfileSubmit = ({ name, avatar }) => {
     const editProfileRequest = () => {
-      return editProfile({ name, avatarUrl }, token)
+      return editProfile({ name, avatar }, token)
         .then((user) => {
           setCurrentUser(user);
         })

@@ -47,7 +47,7 @@ function Header({ onCreateModal, weather, onRegisterClick, onLoginClick, isLogge
       <ProtectedRoute isLoggedIn={isLoggedIn}>
         <Link to="/profile" className="header__profile">
           <div className="header__user-name">{currentUser.name}</div>
-          <img src={currentUser.avatarUrl} className="header__user-pic" alt="User Image" />
+          <img src={currentUser.avatar} className="header__user-pic" alt="User Image" />
         </Link>
       </ProtectedRoute>
         

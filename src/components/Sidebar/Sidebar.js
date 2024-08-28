@@ -9,7 +9,7 @@ function Sidebar({onChangeProfileClick, onLogOutClick}) {
     <section className="sidebar">
       <div className="sidebar__user">
         <img
-          src={currentUser.avatarUrl}
+          src={currentUser.avatar}
           className="sidebar__user-pic"
           alt="User"
         />

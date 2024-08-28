@@ -51,7 +51,7 @@ export function deleteItem(itemId, token) {
   });
 }
 
-export function editProfile({ name, avatarUrl }) {
+export function editProfile({ name, avatar }) {
   const token = localStorage.getItem("jwt");
   return request(`${baseUrl}/users/me`, {
     method: "PATCH",
@@ -61,7 +61,7 @@ export function editProfile({ name, avatarUrl }) {
     },
     body: JSON.stringify({
       name: name,
-      avatarUrl: avatarUrl,
+      avatar: avatar,
     }),
   });
 }

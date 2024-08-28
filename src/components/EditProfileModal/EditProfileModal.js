@@ -10,13 +10,13 @@ const EditProfileModal = ({ onClose, onSubmit }) => {
 
   useEffect(() => {
     values.name = currentUser?.name;
-    values.avatarUrl = currentUser?.avatarUrl;
+    values.avatar = currentUser?.avatar;
   }, [currentUser]);
 
   const handleSubmit = () => {
     onSubmit({
       name: values.name,
-      avatarUrl: values.avatarUrl,
+      avatar: values.avatar,
     });
   };
 
@@ -37,13 +37,13 @@ const EditProfileModal = ({ onClose, onSubmit }) => {
         onChange={handleFormFieldChange}
         required
       />
-      <label htmlFor="avatarUrl" />
+      <label htmlFor="avatar" />
       Avatar URL
       <input
-        id="avatarUrl"
-        name="avatarUrl"
+        id="avatar"
+        name="avatar"
         type="text"
-        value={values.avatarUrl || currentUser?.avatarUrl || ""}
+        value={values.avatar || currentUser?.avatar || ""}
         onChange={handleFormFieldChange}
         required
       />

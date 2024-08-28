@@ -50,12 +50,12 @@ function RegisterModal({ onClose, onSubmit, onLoginClick }) {
         placeholder="Name"
         required
       />
-      <label htmlFor="avatarUrl">Avatar URL</label>
+      <label htmlFor="avatar">Avatar URL</label>
       <input
         type="url"
-        id="avatarUrl"
-        name="avatarUrl"
-        value={values.avatarUrl || ""}
+        id="avatar"
+        name="avatar"
+        value={values.avatar || ""}
         onChange={handleFormFieldChange}
         minLength="7"
         placeholder="Avatar URL"
